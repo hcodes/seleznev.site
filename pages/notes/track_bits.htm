@@ -1,0 +1,22 @@
+<p>Только Internet Explorer во всех своих версиях передаёт всегда в userAgent информацию о битности операционной системы.</p>
+<p>Основываясь на этом, будем считать, что процент посетителей с 64-битной ОС в Internet Explorer будет такой же, как и в других браузерах.</p>
+<pre>
+<code class="javascript">
+function isOS64() {
+    return window.navigator.userAgent.search(/(wow64)|(win64)|(x86_64)|(ia64)/i) != -1;
+}
+
+var ymParams = {};
+
+if (window.navigator.userAgent.search(/(msie) ([\w.]+)/i) != -1) {
+    ymParams['OS bits'] = isOS64() ? {'64': 1} : {'32': 1};
+}
+
+//...
+
+// Инициализация счётчика Метрики
+var yaCounterXXXXXX = new Ya.Metrika({id: XXXXXX, params: ymParams});
+</code>
+</pre>
+<p>Где XXXXXX — номер счётчика Метрики.</p>
+<p>Статистику можно будет посмотреть в отчёте «Параметры визитов».</p>

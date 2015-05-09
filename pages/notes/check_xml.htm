@@ -1,0 +1,154 @@
+<div style="width:80%;">
+    <div class="full-width">
+        Введите что-нибудь для проверки XML-разметки:<br />
+        <textarea id="code" name="code" style="width:100%; height:24em;"></textarea><br />
+        <input type="hidden" name="action" value="save" />
+        <input type="reset" onclick="clearTextarea()" style="float:right;" value="Очистить" /><input type="submit" onclick="return check_xml('code');" value="Проверить" />
+    </div>
+</div>
+<script>
+function clearTextarea() {
+    var el = document.getElementById('code');
+    el.innerHTML = '';
+    el.value = '';
+    el.focus();
+}
+
+
+document.getElementById('code').focus();
+
+function check_xml(id) {
+     switch (is_xml(document.getElementById(id).value))
+     {
+        case 0:
+            alert('Ошибки в xml.');
+        break;
+        case 1:
+            alert('Нормальный xml.');
+        break;
+        case 2:
+            alert('Отсутствует объект DOMParser.');
+        break;
+     }
+
+     return false;
+}
+
+// 0 - НЕПРАВИЛЬНО сформированный xml
+// 1 - правильно сформированный xml
+// 2 - нет возможности проверки xml (отсутствует DOMParser)
+
+function is_xml(text)
+{
+    var xmlString='<innerRoot>' + text + '<\/innerRoot>';
+
+    if (window.DOMParser)
+    {
+        var parser = new DOMParser();
+        parser.strictErrorChecking = true;
+
+        try
+        {
+            var nodes = parser.parseFromString(xmlString, 'text/xml').documentElement;
+        }
+        catch (e)
+        {
+            // Opera
+            return 0;
+        }
+
+        if (nodes.tagName == 'parserError' || nodes.namespaceURI == 'http://www.mozilla.org/newlayout/xml/parsererror.xml')
+        {
+            // Mozilla
+            return 0;
+        }
+
+        if (nodes.firstChild != null)
+        {
+            // Safari
+            if (nodes.firstChild.toString() == '[object HTMLElement]')    return 0;
+        }
+    }
+    else if (window.ActiveXObject)
+    {
+        // Internet Explorer
+        var myDocument;
+        try
+        {
+            myDocument = new ActiveXObject('Microsoft.XMLDOM');
+        }
+        catch (e)
+        {
+            return 2;
+        }
+
+        myDocument.async = false;
+
+        if (!myDocument.loadXML(xmlString))    return 0;
+    }
+    else    return 2;
+
+    return 1;
+}
+</script>
+<br />
+<pre>
+<span class="comment">// 0 - НЕПРАВИЛЬНО сформированный xml
+// 1 - правильно сформированный xml
+// 2 - нет возможности проверки xml (отсутствует DOMParser)</span>
+
+<span class="operator">function</span> is_xml(text)
+{
+    <span class="operator">var</span> xmlString = <span class="text">'&lt;innerRoot&gt;'</span> + text + <span class="text">'&lt;/innerRoot&gt;'</span>;
+
+    <span class="operator">if</span> (window.DOMParser)
+    {
+        <span class="operator">var</span> parser = <span class="operator">new</span> DOMParser();
+        parser.strictErrorChecking = <span class="operator">true</span>;
+
+        <span class="operator">try</span>
+        {
+            <span class="operator">var</span> nodes = parser.parseFromString(xmlString, <span class="text">'text/xml'</span>).documentElement;
+        }
+        <span class="operator">catch</span> (e)
+        {
+            <span class="comment">// Opera</span>
+            <span class="operator">return</span> <span class="magicnum">0</span>;
+        }
+
+        <span class="operator">if</span> (nodes.tagName == <span class="text">'parserError'</span> || nodes.namespaceURI == <span class="text">'http://www.mozilla.org/newlayout/xml/parsererror.xml'</span>)
+        {
+            <span class="comment">// Mozilla</span>
+            <span class="operator">return</span> <span class="magicnum">0</span>;
+        }
+
+        <span class="operator">if</span> (nodes.firstChild != <span class="operator">null</span>)
+        {
+            <span class="comment">// Safari</span>
+            <span class="operator">if</span> (nodes.firstChild.toString() == <span class="text">'[object HTMLElement]'</span>)    <span class="operator">return</span> <span class="magicnum">0</span>;
+        }
+    }
+    <span class="operator">else if</span> (window.ActiveXObject)
+    {
+        <span class="comment">// Internet Explorer</span>
+        <span class="operator">var</span> myDocument;
+        <span class="operator">try</span>
+        {
+            myDocument = <span class="operator">new</span> ActiveXObject(<span class="text">'Microsoft.XMLDOM'</span>);
+        }
+        <span class="operator">catch</span> (e)
+        {
+            <span class="operator">return</span> <span class="magicnum">2</span>;
+        }
+
+        myDocument.async = <span class="operator">false</span>;
+
+        <span class="operator">if</span> (myDocument.loadXML(xmlString) == <span class="operator">false</span>)    <span class="operator">return</span> <span class="magicnum">0</span>;
+    }
+    <span class="operator">else    return</span> <span class="magicnum">2</span>;
+
+    <span class="operator">return</span> <span class="magicnum">1</span>;
+}
+</pre>
+<br />
+<p class="ps">P. S.: Александр Мядзель сообщил мне (спасибо ему за это), что в моей проверке XML не проходят html-сущности и реализовал <a href="http://www.myadzel.ru/marginal/xml-validator/">свою версию</a> с комментариями.</p>

@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/text_photo_generator.css" />  
+    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="./js/text_photo_generator.js"></script>
+    <script src="/js/metrika.js" defer="defer"></script>
+    <title>Подготовка данных для текстовой фотографии</title> 
+</head>
+<body>
+<div id="text-photo"></div>
+<div id="control">
+    <div id="start"><input type="button" id="generate" value="Сгенерировать" /></div>
+    <input type="button" id="clear" value="Очистить" />
+    <div id="prefs">
+        <h2>Настройки<span class="ajax">Развернуть</span></h2>
+        <div class="pad">
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="first">Фото</td>
+                    <td><input class="focus" id="image" type="text" value="http://webfilin.ru/files/examples/red_flower.jpg" /><br /><span id="http" class="ajax">http://</span><span id="ftp" class="ajax">ftp://</span><span id="file" class="ajax">file://</span></td>
+                </tr>
+                <tr>
+                    <td>Ширина</td><td><input id="width" type="text" value="1024" />px</td>
+                </tr>
+                <tr>
+                    <td>Высота</td><td><input id="height" type="text" value="768" />px</td>
+                </tr>
+                <tr>
+                    <td>Цвет фона</td><td><span class="r"><span id="res">#</span></span><input id="bg-color" type="text" value="000" /></td>
+                </tr>
+                <tr>
+                    <td>Размер шрифта</td><td><input id="font-size" type="text" value="12" />px</td>
+                </tr>
+                <tr>
+                    <td>Межстрочное расстояние</td><td><input id="line-height" type="text" value="15" />px</td>
+                </tr>
+                <tr>
+                    <td></td><td><span id="show-more-prefs" class="ajax">Больше настроек</span></td>
+                </tr>
+            </table>
+            
+            <div id="more-prefs">
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="first">Стиль</td><td>
+                            <ul id="styles">
+                                <li><input type="checkbox" id="bold" /> <label for="bold" id="bold-text">Жирный</label></li>
+                                <li><input type="checkbox" id="italic" /> <label for="italic" id="italic-text">Наклонный</label></li>
+                                <li><input type="checkbox" id="underline" /> <label for="underline" id="underline-text">Подчеркнутый</label></li>
+                                <li><input type="checkbox" id="through" /> <label for="through" id="through-text">Перечеркнутый</label></li>
+                            </ul>
+                        </td>
+                    </tr>                
+                    <tr>
+                        <td>Шрифт</td><td><input id="font-family" type="text" value="Arial, sans-serif" /> <input type="button" id="select-font-family" value="↓" />
+                                <ul id="fonts">
+                                    <li><span class="ajax">Arial, sans-serif</span></li>
+                                    <li><span class="ajax">Verdana, sans-serif</span></li>
+                                    <li><span class="ajax">Tahoma, sans-serif</span></li>
+                                    <li><span class="ajax">Georgia, serif</span></li>
+                                    <li><span class="ajax">Time New Roman, serif</span></li>
+                                </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Photoshop готовит<br />данные в виде</td><td>
+                            <ul id="list-types">
+                                <li>
+                                    <input type="radio" name="typetp" checked="checked" id="html" /> <label for="html">HTML</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="typetp" id="js" />  <label for="js">JavaScript</label>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>                    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="photo">
+    <textarea id="text">Поле для ввода текста</textarea> 
+</div>
+
+<form action="./get.php" method="post">
+    <input type="hidden" id="data" name="data" value="" />
+</form>
+
+</body>
+</html>

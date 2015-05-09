@@ -1,0 +1,43 @@
+﻿<p>Получаем и добавляем HTML-код <a href="http://site.yandex.ru" target="_blank">внутреннего поиска от Яндекса</a> на свой сайт.</p>
+<p>Также добавляем следующий код:</p>
+<pre>
+<code>&lt;script&gt;
+(function (w) {
+    var counterId = 123456; // Здесь указываем свой номер счётчика Метрики
+        
+    function f() {
+        var forms = document.getElementsByTagName('form');
+        for (var i = 0; i < forms.length; i++) {
+            var form = forms[i];
+            if (form.action && form.action.search(/yandex\.ru\/sitesearch/) != -1) {
+                var inputs = form.getElementsByTagName('input');
+                for (var n = 0; n < inputs.length; n++) {
+                    var input = inputs[n];
+                    if (input.type == 'submit' || input.type == 'image') {
+                        var onclick = function () {
+                            var c = w['yaCounter' + counterId];
+                            c && c.params('External search Yandex', form.text.value, 1);
+                        };
+                        
+                        if (input.addEventListener) {
+                            input.addEventListener('click', onclick, false);
+                        }
+                        else if (input.attachEvent) {
+                            input.attachEvent('onclick', onclick);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (w.addEventListener) {
+        w.addEventListener('load', f, false);
+    }
+    else if (w.attachEvent) {
+        w.attachEvent('onload', f);
+    }
+})(window);
+&lt;/script&gt;</code>
+</pre>
+<p>Статистику можно будет посмотреть в отчёте «Параметры визитов».</p>

@@ -1,0 +1,42 @@
+html, body {
+    width:100%;
+    overflow:hidden;
+    height:100%;
+    padding:0; 
+    margin:0;
+    border:0;
+}
+
+* {
+    font-family:Arial, sans-serif;
+    font-size:12px;
+}
+    
+#show span {
+    position:relative;
+    visiblity:hidden;
+}
+
+#show.a span {
+    position:absolute;
+    visiblity:visible;
+    left:-2em;
+    top:-2em;
+}
+
+#text {
+    visibility:hidden;
+}
+
+#start {
+    position:absolute;
+    left:222px;
+    top:382px;
+    font-size:3em;
+}
+
+#os {
+    position:absolute;
+    left:0;
+    top:0;
+}

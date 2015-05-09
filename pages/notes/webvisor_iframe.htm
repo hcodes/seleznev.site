@@ -1,0 +1,11 @@
+﻿<p>Для этого из шаблонов сайта необходимо убрать js-код, который препятствует работе сайта внутри IFRAME.</p>
+<p>И вставить следующий код:</p>
+<pre><code>&lt;script&gt;
+try {
+    if (self.parent && self.parent !== self) { // Сайт внутри IFRAME?
+        if (document.referrer.search(/^[^:]+:\/\/([^.]+\.)?yandex\.(?:ru|ua|net|by|kz|com)/) == -1) {
+            self.top.location = document.location;
+        }
+    }
+} catch(e) {}
+&lt;/script&gt;</code></pre>

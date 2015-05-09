@@ -1,0 +1,168 @@
+html, body {
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    overflow:hidden;
+}
+
+body {
+    background-color:#000;
+}
+
+.hidden {
+    visibility:hidden;
+}
+
+#sound-container {
+    position:absolute;
+    left:-10px;
+    top:-10px;
+}
+
+#container {
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    position:absolute;
+}
+
+#yandex {
+    display:none;
+    z-index:500;
+    position:absolute;
+    left:-300%;
+    top:35%;
+    margin-left:-1.5em;
+    color:#fff;
+    font-family:'Times New Roman', serif;
+    font-size:200px;
+}
+    #yandex span {
+        color:red;
+    }
+
+    #yandex div {
+        color:#fff;
+        font-size:20px;
+        position:relative;
+        right:-10000px;
+    }
+        #yandex div div {
+            position:absolute;
+            width:7em;
+            right:0;
+            top:0;
+        }    
+
+#buf-letter {
+    position:absolute;
+    left:-10000px;
+    top:-10000px;
+}
+    
+#wake-up {
+    top:100px;
+    left:10%;
+    position:absolute;
+    color:#5f5;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+}
+    #wake-up span.space {
+        background-color:#55ff55;
+        width:7px;
+        padding:1px 1px;
+        white-space:nowrap;
+    }
+    
+#letters {
+    display:none;
+    color:#080;
+    font-family:Arial, sans-serif;
+    font-size:16px;
+    text-align:left;
+}
+    #letters div.l0 {
+        color:#80ff80;
+        font-weight:bold;
+    }
+
+    #letters div.l1 {
+        color:#70df70;
+        font-weight:bold;
+    }
+
+    #letters div.l2 {
+        color:#60bf60;
+        font-weight:bold;
+    }
+
+    #letters div.l3 {
+        color:#50a050;
+        font-weight:bold;
+    }
+
+    #letters div.l4 {
+        color:#40b940;
+        font-weight:bold;
+    }
+
+    #letters div.l5 {
+        color:#30c030;
+        font-weight:bold;
+    }
+
+    #letters div.l6 {
+        color:#20c920;
+        font-weight:bold;
+    }
+
+    #letters div.m0 {
+        color:#008900;
+    }
+
+    #letters div.m1 {
+        color:#009000;
+    }
+
+    #letters div.m2 {
+        color:#009500;
+    }
+
+    #letters div.m3 {
+        color:#00a000;
+    }
+
+    #letters div.m4 {
+        color:#00a900;
+    }
+
+    #letters div.m5 {
+        color:#00b000;
+    }
+
+    #letters div.m6 {
+        color:#00b900;
+    }            
+
+
+    #letters div.white {
+        color:#60ff60;
+    }
+
+    #letters div {
+        position:absolute;
+        left:0;
+        top:0;
+    }
+
+    #letters div div {
+        position:static;
+    }            

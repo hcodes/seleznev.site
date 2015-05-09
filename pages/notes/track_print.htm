@@ -1,0 +1,66 @@
+<h2>Зачем?</h2>
+<p>Найти страницы, которые посетители распечатывают на сайте, чтобы потом сделать для этих страниц версию для печати.</p>
+
+<h2>Установка кода</h2>
+<ol>
+    <li>Создаём счётчик в Яндекс.Метрике.</li>
+    <li>Вставляем отслеживающий код из этой статьи в HTML-код своей страницы (можно вынести в отдельный js-файл).</li>
+    <li>Не забываем поменять в отслеживающем коде <i>123456</i> на свой номер счётчика Яндекс.Метрики.</li>
+</ol>
+
+<h2>Отслеживающий код</h2>
+
+<pre>
+<code class="javascript">
+/* Отслеживание печати страницы с помощью Яндекс.Метрики
+   http://webfilin.ru/notes/track_print */
+(function() {
+    if (window.addEventListener) {
+        window.addEventListener('load', trackPrint, false);
+    }
+    else if (window.attachEvent) {
+        window.attachEvent('onload', trackPrint);
+    }
+    
+    function trackPrint() {
+        var counterId = 123456, // номер счётчика Яндекс.Метрики
+            divId = 'ym-track-print' + counterId,
+            div = document.createElement('div'),
+            style = document.createElement('style'),
+            url = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//mc.yandex.ru/metrika/' + counterId + '/';
+            body = document.getElementsByTagName('body')[0],
+            cssText = '#' + divId + '{display:block !important; background:url(' + url + ') transparent center center no-repeat !important;left:50% !important;top:50% !important;width:10px !important;height:10px !important;z-index:9999 !important}';
+
+        style.media = 'print';
+        style.type = 'text/css';
+        
+        if (style.styleSheet) { // IE
+            style.styleSheet.cssText = cssText;
+        } else if (/AppleWebKit\//.exec(navigator.userAgent)) { // Safari, Chrome
+            style.innerText = cssText;
+        }
+        else {
+            style.innerHTML = cssText;
+        }
+
+        div.id = divId;
+        div.setAttribute('style', 'position:absolute;left:-9999px;display:none');
+
+        if (body) {
+            body.appendChild(div);
+            body.appendChild(style);
+        }
+    }
+})();
+</code>
+</pre>
+
+<h2>Принцип работы</h2>
+<ol>
+    <li>Динамически создаём на странице скрытый элемент с фоновой картинкой <i>//mc.yandex.ru/watch/123456</i>, которая в коде счётчика Яндекс.Метрики указана в теге <i>&lt;noscript&gt;</i>.</li>
+    <li>Создаём тег <i>style</i> с атрибутом <i>media="print"</i>.</li>
+    <li>Элемент с фоновой картинкой отображается только при печати страницы.</li>
+</ol>
+
+<h2>Поддержка в браузерах</h2>
+<p>Mozilla Firefox, Google Chrome, Safari, Opera и Internet Explorer.</p>

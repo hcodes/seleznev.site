@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./textphoto.css" />  
+    <script src="./textphoto.js"></script>
+    <script src="./medvedev.js"></script>
+    <script src="/js/metrika.js" defer="defer"></script>
+    <title>Дмитрий Медведев</title> 
+    <style>
+    body, html {
+        padding:0;
+        margin:0;
+    }
+    </style>
+</head>
+<body>
+    <div id="text" style="position:absolute; left:50%; top:0; margin-left:-500px;"></div>
+    <script>
+        window.onload = function () {
+            textPhoto('text', textPhotoData);
+        }
+    </script>
+</body>
+</html>

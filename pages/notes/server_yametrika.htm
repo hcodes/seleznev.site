@@ -1,0 +1,106 @@
+<p style="font-size:1.5em;"><a target="_blank" href="https://github.com/hcodes/server_yametrika">Скачать с GitHub</a></p>
+<p>В некоторых случаях требуется отслеживать действия на стороне сервера без JavaScript.</p>
+<p class="ul">Например:</p>
+<ul class="p">
+    <li>Слежка за поисковыми роботами</li>
+    <li>Редиректы</li>
+    <li>Загрузка файлов</li>
+    <li>Страницы с ошибками (403, 404, 500)</li>
+    <li>RSS</li>
+    <li>Время выполнения скриптов</li>
+    <li>Время запросов к базам данных</li>
+    <li>Треккинг AJAX-запросов</li>
+    <li>и пр.</li>
+</ul>
+
+<h1>Возможности</h1>
+<p>Серверная реализация сделана по аналогии с <a target="_blank" href="http://help.yandex.ru/metrika/?id=1113052">JavaScript-реализацией</a>.</p>
+<ul>
+    <li>Загрузка страницы - hit()</li>
+    <li>Внешняя ссылка - extLink()</li>
+    <li>Загрузка файла - file()</li>
+    <li>Параметры визита - params()</li>
+    <li>Неотказ - notBounce()</li>
+</ul>
+
+<h1>Ограничения</h1>
+<p class="ul">Отчёты, которые будут недоступны в Метрике при серверной отправки:</p>
+<ul class="p">
+    <li>Половозрастная структура</li>
+    <li>Пол и возраст</li>
+    <li>Разрешения дисплеев</li>
+    <li>Версия Flash и Silverlight</li>
+    <li>Вебвизор, аналитика форм</li>
+    <li>Карта кликов</li>
+</ul>
+
+<p>Уникальные посетители считаются по User Agent и IP-адресу.</p>
+
+<h1>Как использовать</h1>
+
+<p>Посещение страницы:</p>
+<pre>
+<code class="php">
+&lt;?php
+    //...
+    include('yametrika.php');
+
+    $counter = new YaMetrika(123456); // Номер счётчика Метрики
+    $counter->hit('http://example.ru/archive.zip');
+    //...
+?&gt;
+</code>
+</pre>
+<br />
+<p>Загрузка файла:</p>
+<pre>
+<code class="php">
+&lt;?php
+    //...
+    include('yametrika.php');
+
+    $counter = new YaMetrika(123456); // Номер счётчика Метрики
+    $counter->file('http://example.ru/archive.zip');
+    //...
+?&gt;
+</code>
+</pre>
+<br />
+<p>Какие программы используют посетители для чтения RSS:</p>
+<pre>
+<code class="php">
+&lt;?php
+    //...
+    include('yametrika.php');
+
+    $counter = new YaMetrika(123456); // Номер счётчика Метрики
+    // Просмотр статистики в отчёте "Параметры визитов", ветка RSS -&gt; User Agent
+    $counter->params(Array('RSS' => Array('User Agent' => $_SERVER['HTTP_USER_AGENT'])));
+    //...
+?&gt;
+</code>
+</pre>
+
+<br />
+<p>Слежка за роботами за скачкой robots.txt:</p>
+<p>Добавляем в корневой .htaccess строку "RewriteRule ^robots.txt$ robots.php" и создаём в корне файл robots.php с содержанием:</p>
+<pre>
+<code class="php">
+&lt;?php
+    require('yametrika.php');
+
+    $counter = new YaMetrika(123456); // Номер счётчика Метрики
+    // Просмотр статистики в отчёте "Параметры визитов", ветка Robots.txt -&gt; User Agent
+    $counter->params(Array('Robots.txt' => Array('User Agent' => $_SERVER['HTTP_USER_AGENT'])));
+
+    $txt = file_get_contents('robots.txt');
+
+    header('Cache-Control: no-cache');
+    header('Pragma: no-cache');
+    header('Last-Modified: '.gmdate("D, d M Y H:i:s").' GMT');
+    header('Content-Type: text/plain');
+    print $txt;
+?&gt;
+</code>
+</pre>
+<p>.</p>

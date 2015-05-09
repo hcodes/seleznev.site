@@ -1,0 +1,131 @@
+﻿<style>
+    table.properties td,
+    table.properties th {
+        text-align: center;
+        padding: 2px;
+    }
+
+    table.properties th {
+        background: #fff;
+    }
+
+    table.properties {
+        border-spacing: 0;
+    }
+
+    table.properties td.property,
+    table.properties th.property {
+        text-align: left;
+    }
+
+    table.properties tr:hover {
+        background: #e5e5e5;
+    }
+</style>
+<div style="float:right; font-weight:bold;" id="test">
+<script>
+    function addMonitorExists() {
+        return (typeof screen.availLeft != 'undefined') ? (screen.availLeft || screen.availTop) ? true : false : false;
+    }
+
+    setInterval(function() {
+        var el = document.getElementById('test');
+        if (addMonitorExists()) {
+            el.innerHTML = '<span style="color:red;">Обнаружен дополнительный монитор!<\/span>';
+        }
+        else {
+            el.innerHTML = 'Дополнительный монитор не обнаружен.';
+        }
+    }, 500);
+</script>
+</div>
+<p>Для начала посмотрим на таблицу свойств объекта screen в разных браузерах.</p>
+<table class="properties">
+<tr>
+    <th class="property">
+        Свойство screen
+    </th>
+    <th>
+        Firefox
+    </th>
+    <th>
+        IE 6
+    </th>
+    <th>
+        IE 7
+    </th>
+    <th>
+        IE 8
+    </th>
+    <th>
+        Opera
+    </th>
+    <th>
+        Safari
+    </th>
+    <th>
+        Chrome
+    </th>
+</tr>
+<tr>
+    <td class="property">left</td><td>+</td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">top</td><td>+</td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">width</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td>
+</tr>
+<tr>
+    <td class="property">height</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td>
+</tr>
+<tr>
+    <td class="property">pixelDepth</td><td>+</td><td></td><td></td><td></td><td>+</td><td>+</td><td>+</td>
+</tr>
+<tr>
+    <td class="property">colorDepth</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td>
+</tr>
+<tr>
+    <td class="property">availWidth</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td>
+</tr>
+<tr>
+    <td class="property">availHeight</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td>
+</tr>
+<tr>
+    <td class="property">availLeft</td><td>+</td><td></td><td></td><td></td><td></td><td>+</td><td>+</td>
+</tr>
+<tr>
+    <td class="property">availTop</td><td>+</td><td></td><td></td><td></td><td></td><td>+</td><td>+</td>
+</tr>
+<tr>
+    <td class="property">bufferDepth</td><td></td><td>+</td><td>+</td><td>+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">deviceXDPI</td><td></td><td>+</td><td>+</td><td>+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">deviceYDPI</td><td></td><td>+</td><td>+</td><td>+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">logicalXDPI</td><td></td><td>+</td><td>+</td><td>+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">logicalYDPI</td><td></td><td>+</td><td>+</td><td>+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">systemXDPI</td><td></td><td></td><td></td><td>+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">systemYDPI</td><td></td><td></td><td></td><td>+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">fontSmoothingEnabled</td><td></td><td>+</td><td>+</td><td>+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+    <td class="property">updateInterval</td><td></td><td>+</td><td>+</td><td>+</td><td></td><td></td><td></td>
+</tr>
+</table>
+<p>Подключаем дополнительный монитор и начинаем перемещать окно браузера между экранами.</p>
+<p>В Firefox меняются свойства left, top, availLeft и availTop.<br />В Safari и Chrome — availLeft и availTop.<br />В IE и Opera — тишина.</p>
+<p>В итоге получается, что можно узнать о наличии дополнительного монитор только в браузерах Firefox, Safari, Chrome.<br />
+И то если окно браузера находиться на дополнительном мониторе.</p>

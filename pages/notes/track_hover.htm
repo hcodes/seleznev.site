@@ -1,0 +1,51 @@
+<p>Для этого напишем объект, который будет сохранять только первый ховер на элемент.</p>
+<p>Сохранять все ховеры у пользователя не имеет смысла, т.к. это ухудшит статистику.</p>
+<pre>
+<code class="javascript">var HoverTracker = function(counter) {
+    this._tracked = {};
+    this.track = function(objectName) {
+        if (objectName && !this._tracked[objectName]) { // Только первый ховер
+            counter.params('HoverTracker', objectName, 1); // В отчёте «Параметры визитов», появится пункт с плюсиком HoverTracker
+            this._tracked[objectName] = true;
+        }
+    }
+};</code>
+</pre>
+
+<p>На странице будем отслеживать элементы с id <i>navigation-panel</i> и <i>email</i>.</p>
+
+<pre>
+<code>&lt;ul id="navigation-panel"&gt;
+    &lt;li&gt;&lt;a href="/about/"&gt;О компании&lt;/a&gt;&lt;/li&gt;
+    ...
+&lt;/ul&gt;
+
+    ...
+&lt;a href="email@example.ru" id="email"&gt;E-mail&lt;/a&gt;</code>
+</pre>
+<p>В код страницы добавляем следующий JavaScript код:</p>
+<pre>
+<code>var yaCounterXXXXXX = new Ya.Metrika({id: XXXXXX});
+
+// После инициализации счётчика добавляем наш код
+var HoverTracker = function(counter) {
+    this._tracked = {};
+    this.track = function(objectName) {
+        if (objectName && !this._tracked[objectName]) {
+            counter.params('HoverTracker', objectName, 1);
+            this._tracked[objectName] = true;
+        }
+    }
+};
+
+var ht = new HoverTracker(yaCounterXXXXXX); // Инициализация HoverTracker
+
+document.getElementById('navigation-panel').onmouseover = // Указываем элементы, которые необходимо отслеживать
+document.getElementById('help').onmouseover = function() {
+    ht.track(this.id);
+};</code>
+</pre>
+
+<p>Где XXXXXX - номер счётчика Яндекс Метрики.</p>
+
+<p>После установки кода статистику можно будет увидеть в отчёте «Параметры визитов».</p>

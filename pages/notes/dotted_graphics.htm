@@ -1,0 +1,62 @@
+<h1></h1>
+<p><a href="/files/notes/dotted_graphics/dotted_graphics.js">dotted_graphics.js</a></p>
+<p>Нарисовать круги можно с помощью CSS-свойства <i>border-style: dotted</i> и правильно подобранных размеров блока, побочным продуктом являются сердечки.</p>
+<p>Также круги можно рисовать в Internet Explorer, но уже без сердечек.</p>
+<div id="only-for-ff" style="display:none;"><b>Этот пример только для Mozilla Firefox.</b></div>
+<div id="field" style="width:640px; height:480px; position:relative; border:1px solid #eee; -moz-border-radius:10px; -moz-box-shadow:5px 5px 5px #eee; overflow:hidden;"></div>
+<script src="/files/notes/dotted_graphics/dotted_graphics.js"></script>
+<script>
+if (!$.browser.mozilla) {
+    $('#only-for-ff').show();
+}
+$(document).ready(function() {
+    var figures = ['circle', 'halfCircle', 'heart'];
+    function figure(num, size, color) {
+        return DottedGraphics[figures[num]](size, color);
+    }
+
+    var WIDTH = $('#field').width(),
+        HEIGHT = $('#field').height();
+
+    for (var i = 0; i < 20; i++) {
+        var color = 'rgb(255,' + getRandom(200) + ',' + getRandom(200) + ')',
+            size = 50 + getRandom(100),
+            el = figure(i % (figures.length), size, color);
+
+        el.className = 'dotted';
+        el.style.position = 'absolute';
+        el.style.left = (getRandom(WIDTH) - 50)+ 'px';
+        el.style.top = (getRandom(HEIGHT) - 50) + 'px';
+        el.style.zIndex = getRandom(100);
+
+        var deg = getRandom(360);
+
+        el.style.transform = el.style.webkitTransform =  el.style.MozTransform = 'rotate(' + deg + 'deg)';
+        $(el).appendTo('#field').animate({left:getRandom(WIDTH) + 'px', top: (getRandom(HEIGHT) - 50) + 'px'}, 2000, function() {
+            $(this).animate({left: getRandom(WIDTH) + 'px', top: (getRandom(HEIGHT) - 50) + 'px'}, 2000, arguments.callee);
+        });
+
+        $(el).data('koef', (getRandom(2) == 0) ? -1 : 1);
+        $(el).data('add', Math.random() * 5);
+        $(el).data('deg', deg);
+    }
+
+    setInterval(function() {
+        $('.dotted').each(function() {
+            var deg = $(this).data('deg')  + $(this).data('koef') * $(this).data('add');
+            $(this).data('deg', deg);
+            this.style.MozTransform = 'rotate(' + deg + 'deg)';
+        });
+    }, 30);
+
+    setInterval(function() {
+        $('.dotted').each(function() {
+            $(this).data('koef', (getRandom(2) == 0) ? -1 : 1).data('add', Math.random() * 5);
+        });
+    }, 2000);
+
+    function getRandom(n) {
+        return Math.floor(Math.random() * n);
+    }
+});
+</script>

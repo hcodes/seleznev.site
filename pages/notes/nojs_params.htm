@@ -1,0 +1,57 @@
+<p>Отправлять <a href="https://yandex.ru/support/metrika/reports/visit-params.xml" target="_blank">параметры визитов</a> можно и без JavaScript, для этого необходимо правильно составить http-запрос.</p>
+<p>Данный способ можно использовать в мобильных и десктопных приложениях, в виджетах и пр.</p>
+<p>Данная форма поможет в генерации нужных запросов.</p>
+<div style="background: #fafafa; padding: 5px 20px 15px 20px; border-radius: 5px;">
+    <p>Номер счётчика:<br /><input type="text" style="width: 12em;" value="12345" id="counterId"/></p>
+    <p>JSON (параметры визитов):<br /><textarea id="params" style="width: 40em; height: 7em;">{"level1": {"level2": {"level3": 1}}}</textarea></p>
+    <p><input type="submit" id="start" value="Сгенерировать" />&nbsp;&nbsp;&nbsp;
+    </p>
+    <div>Результирующий URL:
+        <div id="result" style="border: 1px gray dotted; background: #f0f0f0; display: none; padding: 0.5em;"></div>
+    </div>
+</div>
+
+<script>
+    function escapeUrl(url) {
+        return (window.encodeURIComponent || window.escape)(url).replace(/\+/g, '%2B');
+    }
+
+    window.addEventListener('load', function () {
+        var cid = $('#counterId'),
+            params = $('#params'),
+            start = $('#start'),
+            result = $('#result');
+
+        start.click(function () {
+            if (!params.val() && !cid.val()) {
+                return;
+            }
+
+            var id = parseInt(('' + cid.val()).trim(), 10),
+                siteInfo,
+                errId = $('#errorId'),
+                p;
+
+
+            if (id < 1 || isNaN(id)) {
+                result.empty().hide();
+                alert('Ошибка, некорректный номер счётчика.');
+                cid.focus();
+                return;
+            }
+
+            try {
+                p = JSON.parse(params.val());
+            } catch (e) {
+                result.empty().hide();
+                alert('Ошибка, невалидный JSON, используйте двойные кавычки вместо одинарных.');
+                params.focus();
+                return;
+            }
+
+            result.html('https://mc.yandex.ru/watch/' + id + '?site-info=' + escapeUrl(JSON.stringify(p))).show();
+        });
+        
+        start.click();
+    }, false);
+</script>

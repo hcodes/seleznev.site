@@ -1,0 +1,6 @@
+AddEncoding x-gzip .gz
+RewriteEngine On
+RewriteBase /files/notes/text-photo/
+RewriteCond %{HTTP:Accept-encoding} gzip
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule ^(.*)$ $1.gz [QSA,L]

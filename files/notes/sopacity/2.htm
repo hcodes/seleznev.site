@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Режим наложения</title>
+</head>
+<body>
+
+<h4 style="padding-left:20px;"><a href="index.htm">Плавное перетекание</a>   Режим наложения   <a href="3.htm">Случайная прозрачность по квадратам</a></h4>
+<div style="position:absolute; left:800px; top:20px;">Эта картинка перемещается ↓</div>
+<div style="position:absolute; left:20px; top:680px; background-color:#ffc; padding:0.3em; border:1px solid #ccc;">Нужно натащить красный цветок на розу.</div>
+
+<div style="position:absolute; left:20px; top:50px;">
+    <img src="2.jpg" id="mover" style="cursor:move; position:absolute; left:620px; top:0px; height:600px; width:600px;" />
+    <img src="1.jpg" id="downer" style="position:absolute; left:0px; top:0px; height:600px; width:600px;" />
+
+    <img id="is1" src="x.gif" style="background:url('1.jpg') 0px 0px no-repeat; position:absolute; left:0px; top:0px; width:1px; height:1px; z-index:11;"/>
+    <img id="is2" src="x.gif" style="background:url('1.jpg') 0px 0px no-repeat; position:absolute; left:0px; top:0px; width:1px; height:1px; z-index:11;"/>
+    <img id="is3" src="x.gif" style="background:url('1.jpg') right 0px no-repeat; position:absolute; left:0px; top:0px; width:1px; height:1px; z-index:11;"/>
+    <img id="is4" src="x.gif" style="background:url('1.jpg') 0px bottom no-repeat; position:absolute; left:0px; top:0px; width:1px; height:1px; z-index:11;"/>
+</div>
+
+<script>
+// © 2007 Селезнёв Д. Л., info@webfilin.ru
+
+var faden=100;
+var drag=false;
+
+var deltax;
+var deltay;
+
+var imgHeight=600;
+var imgWidth=600;
+
+reFlowers();
+setOpacity('downer', 50);
+
+document.onmousemove=fmoveimg;
+$('mover').onmousedown=fmousedown;
+document.onmouseup=fmouseup;
+
+function fmousedown(e)
+{
+    drag=true;
+
+    var x=0, y=0;
+
+    e=e||window.event;
+
+    if (e.pageX)
+    {
+        x=e.pageX;
+        y=e.pageY;
+    }
+
+    else if (e.clientX)
+    {
+        x=e.clientX+document.body.scrollLeft-document.body.clientLeft;
+        y=e.clientY+document.body.scrollTop-document.body.clientTop;
+    }
+
+    deltax=x-getCSSLeft('mover');
+    deltay=y-getCSSTop('mover');
+
+    return false;
+}
+
+function fmouseup(e)
+{
+    fmoveimg(e);
+    drag=false;
+
+    return true;
+}
+
+function fmoveimg(e)
+{
+    var x=0, y=0;
+
+    e=e||window.event;
+
+    if (e.pageX)
+    {
+        x=e.pageX;
+        y=e.pageY;
+    }
+    else if (e.clientX)
+    {
+        x=e.clientX+document.body.scrollLeft-document.body.clientLeft;
+        y=e.clientY+document.body.scrollTop-document.body.clientTop;
+    }
+
+    var xn=x-deltax;
+    var yn=y-deltay;
+
+    if (drag)
+    {
+        reFlowers();
+        moveTo('mover', xn, yn);
+
+        return false;
+    }
+
+    return true;
+}
+
+function reFlowers()
+{
+    var xx1, xx2, yy1, yy2;
+    var xx3, xx4, yy3, yy4;
+
+    xx1=xx2=yy1=yy2=0;
+    xx3=xx4=yy4=yy4=0;
+
+    if (getCSSLeft('mover')>=getCSSLeft('downer'))
+    {
+        xx1=getCSSLeft('mover')-getCSSLeft('downer')+1;
+        yy1=imgHeight;
+        show('is1');
+        hide('is3');
+        sizeTo('is1', xx1, yy1);
+    }
+    else
+    {
+        xx3=getCSSLeft('downer')-getCSSLeft('mover')+1;
+        yy3=imgHeight;
+        show('is3');
+        hide('is1');
+        sizeTo('is3', xx3, yy3);
+        moveTo('is3', imgWidth-xx3, imgHeight-yy3);
+    }
+
+    if (getCSSTop('mover')>=getCSSTop('downer'))
+    {
+        yy2=getCSSTop('mover')-getCSSTop('downer')+1;
+        xx2=imgWidth;
+        show('is2');
+        hide('is4');
+        sizeTo('is2', xx2, yy2);
+    }
+    else
+    {
+        yy4=getCSSTop('downer')-getCSSTop('mover')+1;
+        xx4=imgWidth;
+        show('is4');
+        hide('is2');
+        sizeTo('is4', xx4, yy4);
+        moveTo('is4', imgWidth-xx4, imgHeight-yy4);
+    }
+
+    return;
+}
+
+function getCSSTop(id)
+{
+    return nopx($(id).style.top);
+}
+
+function getCSSLeft(id)
+{
+    return nopx($(id).style.left);
+}
+
+function nopx(text)
+{
+    return parseInt(text.replace(/px/, ''));
+}
+
+function getRandom(n)
+{
+    return Math.floor(Math.random()*n);
+}
+
+function $(id)    {return document.getElementById(id);}
+
+function setOpacity(id, opacity)
+{
+    var object=$(id).style;
+
+    object.filter='alpha(opacity='+opacity+')';
+    object.opacity=(opacity/100);
+}
+
+function sizeTo(id, w, h)
+{
+    $(id).style.width=''+w+'px';
+    $(id).style.height=''+h+'px';
+}
+
+function moveTo(id, x, y)
+{
+    $(id).style.left=''+x+'px';
+    $(id).style.top=''+y+'px';
+}
+
+function show(id)
+{
+    $(id).style.display='block';
+}
+
+function hide(id)
+{
+    $(id).style.display='none';
+}
+</script>
+</body>
+</html>

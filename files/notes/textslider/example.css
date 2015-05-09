@@ -1,0 +1,101 @@
+#types table {
+    width: 300px;
+}
+
+#types td,
+#types th {
+    padding: 5px;
+}
+
+#types td.param {
+    text-align: right;
+}        
+
+#types th {
+    text-align: left;
+}
+
+input.ip {
+    width: 2em;
+}
+
+input.len {
+    width: 3em;
+} 
+
+input.month {
+    width: 5em;
+}         
+
+input.fs {
+    width: 3em;
+} 
+
+input.width, input.height {
+    width: 2em;
+} 
+
+input.zp {
+   width: 5em;
+}
+
+input.angle {
+   width: 2.5em;
+}    
+
+ input.temp {
+   width: 2em;
+}
+
+span.red span.textslider span {
+    color:red;
+    border-bottom:1px dotted;
+}
+
+span.green span.textslider span {
+    color:green;
+    border-bottom:1px dotted;
+}
+
+span.blue span.textslider span {
+    color:blue;
+    border-bottom:1px dotted;
+}
+
+#css-editor {
+    position:relative;
+    height:800px;
+}
+
+#test {
+    position:relative;
+    top:20px;
+}
+
+#field {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100px;
+    height:100px;
+    border-top:1px dotted red;
+    outline:1px dotted yellow;
+    cursor:move;
+    text-align:center;
+}
+
+#options {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1000;
+    padding:3px 6px;
+    background-color:#f9f9f9;
+    border:1px solid #f0f0f0;
+}
+    #options td {
+        padding:0 0.2em 5px 0;
+    }
+        #options td.first {
+            text-align:right;
+        }

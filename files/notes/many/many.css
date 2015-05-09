@@ -1,0 +1,80 @@
+body, html {
+    background:#000;
+    color:#fff;
+    padding:0;
+    margin:0;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color:#fff;
+}
+
+#measurer {
+    position:absolute;
+    top:-2em;
+    left:0;
+    width:100%;
+}
+
+#container {
+    min-width:900px;
+    height:920px;
+}
+
+#many {
+    position:absolute;
+    left:50%;
+    margin-left:-300px;
+    top:90px;
+}
+
+#many2 {
+    position:absolute;
+    left:50%;
+    margin-left:-300px;
+    top:90px;
+}
+
+#control {
+    position:absolute;
+    left:50%;
+    top:50px;
+    width:310px;
+    margin-left:-310px;
+    text-align:left;
+}
+
+#control-inner {
+    position:absolute;
+    left:0;
+    top:0;
+}
+
+#many div {
+    position:absolute;
+    left:0;
+    top:0;
+    width:1px;
+    height:800px;
+    background:url('images/1.jpg') 0px 0px no-repeat #000;
+}
+
+#many2 #cage1 div {
+    position:absolute;
+    left:0;
+    top:0;
+    width:1px;
+    height:800px;
+    background:url('images/1.jpg') 0px 0px no-repeat #000;
+}
+
+#many2 #cage2 div {
+    position:absolute;
+    left:0;
+    top:0;
+    width:600px;
+    height:1px;
+    line-height:0;
+    font-size:0;
+    background:url('images/1.jpg') 0px 0px no-repeat #000;
+}

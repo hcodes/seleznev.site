@@ -1,0 +1,60 @@
+﻿html, body {
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+#sexy-link-container {
+    font-size:2em;
+    position:absolute;
+    left:100px;
+    top:300px;
+}
+
+span.inside {
+    color:#0099CC;
+    border-bottom:1px dashed #0099CC;
+    line-height:1.5em;
+    cursor:pointer;
+}
+
+#switcher-container {
+    text-align:center;
+    position:absolute;
+    left:600px;
+    top:100px;
+    width:350px;
+    height:480px;
+}
+
+a:link, a:visited {
+    color:#0099CC;
+    text-decoration:underline;
+}
+
+a:hover, a:active {
+    color:#CC9900;
+    text-decoration:underline;
+}
+
+#tryapka {
+    position:absolute;
+    left:0;
+    top:0;
+    width:350px;
+    height:480px;
+    z-index:10;
+    background-color:#fff;
+}
+
+#img-container {
+    position:relative;
+    top:1em;
+    text-align:center;
+}        
+
+#sexy-link span {
+    position:relative;
+    left:0;
+    top:0;
+}

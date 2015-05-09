@@ -1,0 +1,21 @@
+body, html {
+    background:#000;
+    color:#fff;
+}
+
+#measurer {
+    position:absolute;
+    top:-2em;
+    left:0;
+    width:100%;
+}
+
+#text-photo {
+    font-size:0;
+    line-height:0;
+}
+
+#text-photo span {
+    font-size:12px;
+    line-height:15px;
+}

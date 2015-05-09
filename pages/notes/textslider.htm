@@ -1,0 +1,151 @@
+﻿<p>
+    <a class="big" href="/files/notes/textslider/textslider.zip">Скачать</a>
+</p>
+
+<p class="pul">Плюсы:</p>
+<ul class="pul2">
+    <li>компактность размещения;</li>
+    <li>ввод данных при помощи мышки;</li>
+    <li>быстрая оценка возможных вариантов.</li>
+</ul>
+
+<h2>Использование</h2>
+<pre style="padding-top: 0em;"><span class="tag">&lt;html&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    …
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="attr-value">"stylesheet"</span> <span class="attr">type</span>=<span class="attr-value">"text/css"</span> <span class="attr">href</span>=<span class="attr-value">"<a href="/files/notes/textslider/textslider.css">./textslider.css</a>"</span> <span class="tag"> /&gt;</span>
+    <span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="attr-value">"text/javascript"</span> <span class="attr">src</span>=<span class="attr-value">"./jquery.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+    <span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="attr-value">"text/javascript"</span> <span class="attr">src</span>=<span class="attr-value">"<a href="/files/notes/textslider/jquery.textslider.js">./jquery.textslider.js</a>"</span><span class="tag">&gt;&lt;/script&gt;</span>
+    …
+<span class="tag">&lt;/head&gt;
+&lt;body&gt;</span>
+    …
+    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="attr-value">"text"</span> <span class="attr">class</span>=<span class="attr-value">"textslider"</span> <span class="attr">value</span>=<span class="attr-value">"25"</span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="attr-value">"text/javascript"</span><span class="tag">&gt;</span>
+        $(document).ready(<span class="operator">function</span>() {
+            $('input.textslider').textSlider({min: <span class="magicnum">0</span>, max: <span class="magicnum">50</span>});
+        });
+    <span class="tag">&lt;/script</span>
+    …
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre>
+
+<h2>Примеры</h2>
+<table cellspacing="0">
+    <tr>
+        <td style="width:6em;">
+            <input type="text" class="textslider example1" value="25" style="width:2em;" />
+        </td>
+        <td>
+            $('input.textslider').textSlider({min: 0, max: 50});
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" class="textslider example2" value="250" style="width:3em;" />
+        </td>
+        <td>
+            $('input.textslider').textSlider({min: -500, max: 500});
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" class="textslider example3" value="20" style="width:2em;" />
+        </td>
+        <td>
+            $('input.textslider').textSlider({min: 8, max: 30, filterForCSS: function(value, data) {return {fontSize: value + 'px'};}});
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" class="textslider example4" value="25" style="width:2em;" />
+        </td>
+        <td>
+            $('input.textslider').textSlider({min: -50, max: 50, filterForValue: function(value, data) {return value > 0 ? '+' + value : value;}});
+        </td>
+    </tr>
+</table>
+<script>
+    $(document).ready(function() {
+        $('input.textslider.example1').textSlider({min: 0, max: 50});
+        $('input.textslider.example2').textSlider({min: -500, max: 500});
+        $('input.textslider.example3').textSlider({min: 8, max: 30, filterForCSS: function(value, data) {return {fontSize: value + 'px'};}});
+        $('input.textslider.example4').textSlider({min: -50, max: 50, filterForValue: function(value, data) {return value > 0 ? '+' + value : value;}});
+    });
+</script>
+
+<h2>Расширенные примеры</h2>
+<div id="types">
+    <table cellspacing="0">
+        <tr>
+            <td class="param">IP-адрес:</td><td><input type="text" class="ip" value="192" autocomplete="off" />.<input type="text" class="ip" value="168" autocomplete="off" />.<input type="text" class="ip" value="1" autocomplete="off" />.<input type="text" class="ip" value="2" autocomplete="off" /></td>
+        </tr>
+        <tr>
+            <td class="param">Длина:</td><td><input type="text" class="len" value="50" autocomplete="off" /> м</td>
+        </tr>
+        <tr>
+            <td class="param transform">Угол:</td><td class="transform"><input type="text" class="angle" value="130" autocomplete="off" /> °</td>
+        </tr>
+        <tr>
+            <td class="param">Месяц:</td><td><input type="text" class="month" value="1" autocomplete="off" /></td>
+        </tr>
+        <tr>
+            <td class="param">Размер шрифта:</td><td><input type="text" class="fs" value="20" autocomplete="off" /> пикселей</td>
+        </tr>
+        <tr>
+            <td class="param">Периметр:</td><td><input type="text" class="width" value="50" autocomplete="off" /> × <input type="text" class="height" value="30" autocomplete="off" /> м</td>
+        </tr>
+        <tr>
+            <td class="param">Температура:</td><td><input type="text" class="temp" value="100" autocomplete="off" /> °С</td>
+        </tr>
+        <tr>
+            <td class="param">Зарплата:</td><td><input type="text" class="zp" value="2" autocomplete="off" /></td>
+        </tr>
+    </table>
+</div>
+
+<h2>CSS-редактор</h2>
+<div id="css-editor">
+    <div id="field">Hello, world!</div>
+    <div id="options">
+        <table>
+            <tr>
+                <td class="first">left:</td><td><input type="text" size="3" class="textslider min=0" title="left" id="x" value="426" autocomplete="off" />px;</td>
+            </tr>
+            <tr>
+                <td class="first">top:</td><td><input  size="3"type="text" class="textslider min=0" title="top" id="y" value="202" autocomplete="off" />px;</td>
+            </tr>
+            <tr id="ie-transform">
+                <td class="first">transform:</td><td>rotate(<input size="3" type="text" class="textslider min=0 max=360" title="transform" id="transform" value="330" autocomplete="off" />deg);</td>
+            </tr>
+            <tr>
+                <td class="first">width:</td><td><input type="text" size="3" class="textslider min=0" title="width" id="w" value="379" autocomplete="off" />px;</td>
+            </tr>
+            <tr>
+                <td class="first">height:</td><td><input size="3" type="text" class="textslider min=0" title="height" id="h" value="155" autocomplete="off" />px;</td>
+            </tr>
+            <tr>
+                <td class="first">border-width:</td><td><input size="3" type="text" class="textslider min=0 max=300" title="border-width" id="border-width" value="45" autocomplete="off" />px;</td>
+            </tr>
+            <tr>
+                <td class="first">outline-width:</td><td><input size="3" type="text" class="textslider min=0 max=300" title="outline-width" id="outline-width" value="67" autocomplete="off" />px;</td>
+            </tr>
+            <tr>
+                <td class="first">margin:</td><td><input size="3" type="text" class="textslider min=0" title="margin" id="margin" value="48" autocomplete="off" />px;</td>
+            </tr>
+            <tr>
+                <td class="first">padding:</td><td><input size="3" type="text" class="textslider min=0 max=100" title="" id="padding" value="36" autocomplete="off" />px;</td>
+            </tr>
+            <tr>
+                <td class="first">color:</td><td>rgb(<span class="red"><input type="text" size="3" class="textslider min=0 max=255" title="red" id="r" value="0" autocomplete="off" /></span>, <span class="green"><input size="3" type="text" class="textslider min=0 max=255" title="green" id="g" value="0" autocomplete="off" /></span>, <span class="blue"><input size="3" type="text" class="textslider min=0 max=255" title="blue" id="b" value="0" autocomplete="off" /></span>);</td>
+            </tr>
+            <tr>
+                <td class="first">background-color:</td><td>rgb(<span class="red"><input type="text" size="3" class="textslider min=0 max=255" title="red" id="rb" value="255" autocomplete="off" /></span>, <span class="green"><input size="3" type="text" class="textslider min=0 max=255" title="green" id="gb" value="255" autocomplete="off" /></span>, <span class="blue"><input size="3" type="text" class="textslider min=0 max=255" title="blue" id="bb" value="255" autocomplete="off" /></span>);</td>
+            </tr>
+            <tr>
+                <td class="first">font-size:</td><td><input type="text" size="3" class="textslider min=8 max=1000" title="font-size" id="fs" value="25" autocomplete="off" />px;</td>
+            </tr>
+        </table>
+    </div>
+</div>

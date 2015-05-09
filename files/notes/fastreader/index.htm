@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>FastReader</title>
+    <script src="/js/metrika.js" defer="defer"></script>
+    <style>
+        html, body {font-size:16px; color:black; border:0; padding:0; margin:0;}
+        body {margin:20%; margin-top:5%;}
+        #fasttext    {margin-top:2em; margin-bottom:2em; text-align:center; height:1em;}
+        span.normal    {color:black; background-color:white;}
+        span.inverse    {color:white; background-color:black;}
+        #control {padding:1em;}
+    </style>
+</head>
+<body>
+    <div id="control"><input type="button" style="font-size:18px;" value="Читать" onclick="javascript:beginRead();" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Скорость, мс: <input id="speedFastReader" type="text" size="4" value="150" /></div>
+
+    <h1 id="fasttext"></h1>
+    <p id="ft1">Первый вице-премьер Дмитрий Медведев обратился к Владимиру Путину с просьбой дать согласие, в случае его победы на президентских выборах, возглавить правительство России для сохранения преемственности курса, которым идет страна. Об этом Медведев заявил в эфире телеканала "Россия".</p>
+    <p id="ft2">Президент Украины Виктор Ющенко внес кандидатуру лидера БЮТ Юлии Тимошенко на голосование на должность премьер-министра страны. Одновременно президент внес представление на назначение Юрия Еханурова министром обороны и Владимира Огрызко министром иностранных дел. Ранее сообщалось, что коалиция предлагает на эти посты других людей.</p>
+    <p id="ft3">Марсоход "Спирит" нашел в почве следы потенциально благоприятных условий для жизни, рассказал ведущий специалист миссии Стив Сквайрс на конференции Американского геофизического союза. Ученые предполагают, что в борозде, случайно проделанной сломанным колесом марсохода, некогда могли жить микроорганизмы.</p>
+    <p id="ft4">Член ЦИК Евгений Колюшин утверждает, что итоги парламентских выборов были подведены с определенными нарушениями закона. Речь идет о том, что ЦИК до 8 декабря, когда были обнародованы официальные итоги выборов, не рассмотрел поступившие жалобы на действия избирательных комиссий.</p>
+    <p id="ft5">23 тысячи военнослужащих Внутренних войск МВД РФ примут участие в обеспечении безопасности на зимней Олимпиаде-2014 в Сочи. Среди них будут подразделения спецназа Внутренних войск. В целях подготовки к несению службы во время Олимпиады, в Сочи уже развернут полк ВВ, а спецназовцы проводят в районе рекогносцировки.</p>
+    <p id="ft6">Предложение Дмитрия Медведева Владимиру Путину возглавить правительство после выборов 2 марта не произвело почти никакого действия на стоимость акций российских компаний на фондовом рынке. Индекс РТС за полчаса со времени оглашения инициативы Дмитрия Медведева вырос всего на три с половиной пункта, или полторы десятых процента.</p>
+    <p id="ft7">Согласно подсчетам аналитиков, объемы продаж компьютерных и видеоигр в США в ноябре 2007 года превысили один миллиард долларов. В ноябре жители США начинают готовиться к предстоящим новогодним праздникам; кроме того, в этом месяце в продажу в Северной Америке поступили многие ожидаемые игры.</p>
+
+    <script>
+    // Прототип FastReader на js
+    // © 2008 Селезнёв Д. Л., info@webfilin.ru
+
+    var currentP=1, lastWord=-1, lastP=0, currentWord=0;
+    var speedRead=150;
+    var stop=true;
+    var timerId=null;
+
+    var fta=[];
+
+    var beforer=/^(\d{1,4}|в|перед|за|с|под|по|а|от|к|о|со|об|для|из-за|около|у|над|из|на|не|из-под|и)$/i;
+    var afterr=/^(ли|ль|же|ж|бы|б)$/i;
+
+    function $(id)    {return document.getElementById(id);}
+
+    function initFastReader()
+    {
+        var i=1;
+        var at, newtext='';
+
+        while($('ft'+i))
+        {
+            at=splitText($('ft'+i).innerHTML);
+            newtext='';
+            var del=[];
+            for(var t=0; t<at.length; t++)
+            {
+                if (t)
+                {
+                    if (beforer.test(at[t-1]))
+                    {
+                        at[t]=at[t-1]+' '+at[t];
+                        at.splice(t-1, 1);
+                        t--;
+                    }
+                }
+
+                if (t!=at.length-1)
+                {
+                    if (afterr.test(at[t+1]))
+                    {
+                        at[t]=at[t]+' '+a[t+1];
+                        at.splice(t+1, 1);
+                        t++;
+                    }
+                }
+
+                fta[i-1]=at;
+            }
+
+            for(var t=0; t<at.length; t++)
+            {
+                newtext+=' <span>'+at[t]+'<\/span>';
+            }
+
+            $('ft'+i).innerHTML=newtext;
+
+            i++;
+        }
+    }
+
+    initFastReader();
+
+    function splitText(text)
+    {
+        return text.split(' ');
+    }
+
+    function beginRead()
+    {
+        if (timerId)    clearTimeout(timerId);
+        clearOldSelect();
+
+        lastWord=-1;
+        currentWord=0;
+        lastP=0;
+        currentP=1;
+
+        stop=false;
+        nextWord();
+    }
+
+    function clearOldSelect()
+    {
+        if (lastWord!=-1)
+        {
+            if ($('ft'+lastP))    $('ft'+lastP).getElementsByTagName('span')[lastWord].className='normal';
+            if ($('ft'+currentP))    $('ft'+currentP).getElementsByTagName('span')[currentWord].className='normal';
+        }
+    }
+
+    function nextWord()
+    {
+        var f=$('ft'+currentP);
+        var spans;
+
+        speedRead=getSpeedRead();
+
+        if (f)
+        {
+            var cs=f.getElementsByTagName('span');
+
+            if (currentP<=fta.length && !stop)
+            {
+                timerId=setTimeout('nextWord();', speedRead);
+            }
+
+            spans=f.getElementsByTagName('span');
+
+            if (lastWord!=-1)
+            {
+                if (currentP==lastP)
+                {
+                    spans[lastWord].className='normal';
+                }
+                else
+                {
+                    $('ft'+lastP).getElementsByTagName('span')[lastWord].className='normal';
+                }
+            }
+            spans[currentWord].className='inverse';
+
+            $('fasttext').innerHTML=spans[currentWord].innerHTML;
+
+            lastWord=currentWord;
+            lastP=currentP;
+
+            currentWord++;
+
+            if (currentWord>=cs.length)
+            {
+                currentWord=0;
+                currentP++;
+
+                if (!$('ft'+currentP))
+                {
+                    $('ft'+lastP).getElementsByTagName('span')[lastWord].className='normal';
+                }
+            }
+        }
+        else
+        {
+            stop=true;
+        }
+
+    }
+
+    function getSpeedRead()
+    {
+        var r=parseInt($('speedFastReader').value);
+        if (!r)
+        {
+            r=1;
+            $('speedFastReader').value=r;
+        }
+
+        return r;
+    }
+</script>
+</body>
+</html>

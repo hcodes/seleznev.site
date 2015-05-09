@@ -1,0 +1,87 @@
+﻿<p>При определение версии Silverlight в Internet Explorer возникает проблема, т.к. есть всего лишь одна функция в ActiveX-объекте для этих целей — <em>isVersionSupported()</em>.</p>
+<p>К счастью, есть решение, найденное на <a target="_blank" href="http://silverlightversion.com" rel="nofollow">silverlightversion.com</a>.</p>
+<pre>
+<span class="operator">function</span> getSilverlightVersion() {
+    <span class="operator">var</span> version = null;
+    <span class="operator">if</span> (window.ActiveXObject) {
+        <span class="operator">try</span> {
+            <span class="operator">var</span> control = <span class="operator">new</span> ActiveXObject(<span class="text">'AgControl.AgControl'</span>);
+
+            <span class="operator">function</span> loopMatch(control, vers, idx, inc) {
+                <span class="operator">while</span>(isSupported(control, vers)) {
+                    vers[idx] += inc;
+                }
+                vers[idx] -= inc;
+            }
+
+            <span class="operator">function</span> isSupported(control, ver) {
+                <span class="operator">return</span> control.isVersionSupported(ver.join('.'));
+            }
+
+            <span class="operator">var</span> vers = [<span class="magicnum">1</span>, <span class="magicnum">0</span>, <span class="magicnum">0</span>, <span class="magicnum">0</span>];
+            loopMatch(control, vers, <span class="magicnum">0</span>, <span class="magicnum">1</span>);
+            loopMatch(control, vers, <span class="magicnum">1</span>, <span class="magicnum">1</span>);
+            loopMatch(control, vers, <span class="magicnum">2</span>, <span class="magicnum">10000</span>);
+            loopMatch(control, vers, <span class="magicnum">2</span>, <span class="magicnum">1000</span>);
+            loopMatch(control, vers, <span class="magicnum">2</span>, <span class="magicnum">100</span>);
+            loopMatch(control, vers, <span class="magicnum">2</span>, <span class="magicnum">10</span>);
+            loopMatch(control, vers, <span class="magicnum">2</span>, <span class="magicnum">1</span>);
+            loopMatch(control, vers, <span class="magicnum">3</span>, <span class="magicnum">1</span>);
+
+            version = vers.join('.');
+        } <span class="operator">catch</span> (e) {}
+    }
+    <span class="operator">else</span> {
+        <span class="operator">var</span> plugin = navigator.plugins[<span class="text">'Silverlight Plug-In'</span>];
+        <span class="operator">if</span> (plugin) {
+            version = plugin.description;
+        }
+    }
+
+    <span class="operator">return</span> version;
+}
+</pre>
+<script>
+   function getSilverlightVersion() {
+        var version = null;
+        if (window.ActiveXObject) {
+            try {
+                var control = new ActiveXObject('AgControl.AgControl');
+
+                function loopMatch(control, vers, idx, inc) {
+                    while(isSupported(control, vers)) {
+                        vers[idx] += inc;
+                    }
+                    vers[idx] -= inc;
+                }
+
+                function isSupported(control, ver) {
+                    return control.isVersionSupported(ver.join('.'));
+                }
+
+                var vers = [1, 0, 0, 0];
+                loopMatch(control, vers, 0, 1);
+                loopMatch(control, vers, 1, 1);
+                loopMatch(control, vers, 2, 10000);
+                loopMatch(control, vers, 2, 1000);
+                loopMatch(control, vers, 2, 100);
+                loopMatch(control, vers, 2, 10);
+                loopMatch(control, vers, 2, 1);
+                loopMatch(control, vers, 3, 1);
+
+                version = vers.join('.');
+            } catch (e) {}
+        }
+        else {
+            var plugin = navigator.plugins['Silverlight Plug-In'];
+            if (plugin) {
+                version = plugin.description;
+            }
+        }
+
+        return version;
+    }
+
+    var version = getSilverlightVersion();
+    document.write('<p><strong>' + (version ? 'Версия Silverlight в вашем браузере: ' + version : 'В вашем браузере Silverlight не обнаружен.') + '<\/strong><\/p>');
+</script>

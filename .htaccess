@@ -1,0 +1,23 @@
+<IfModule mod_headers.c>
+   # 1 Week
+   <FilesMatch ".(js|css|png|jpg|svg|txt|zip)$">
+   Header set Cache-Control "max-age=604800"
+   </FilesMatch>
+</IfModule>
+
+CharsetDisable On
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)?(.*) index.php?url=$1&$2&%{QUERY_STRING}
+ErrorDocument 403 /403.html
+ErrorDocument 500 /500.html
+
+
+AddEncoding gzip .gz
+
+RewriteCond %{HTTP:Accept-encoding} gzip
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule ^(.*)$ $1.gz [QSA,L]

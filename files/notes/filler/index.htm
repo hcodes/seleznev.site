@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script src="/js/metrika.js" defer="defer"></script>
+  <title>Заливка картинки</title>
+  <style>
+#imgs {position:absolute; left:50%; margin-left:-320px; margin-top:100px;}
+#imgs div {position:absolute; left:0; width:640px; height:1px; top:0; background:url('cherry.jpg') top left no-repeat;}
+h1 {position:absolute; left:50%; margin-left:-320px; margin-top:40px; font-family:Arial, sans-serif; color:#666; font-weight:normal;}
+</style>
+</head>
+<body>
+<img src="cherry.jpg" width="1" height="1" style="position:absolute; left:-100px; top:-100px;" alt="" />
+<div id="imgs"></div>
+
+<script>
+var height=480;
+var imgs;
+var fpos=0;
+var oldi=0;
+var delta=5;
+
+function init()
+{
+    var text='';
+    for (var i=0; i<height; i++)
+    {
+        text+='<div style="top:'+i+'px;"><\/div>';
+    }
+
+    var el=document.getElementById('imgs');
+    el.innerHTML=text;
+    imgs=el.getElementsByTagName('div');
+}
+
+function filler()
+{
+    var k=0;
+    for(var i=oldi; i<fpos; i++)
+    {
+        imgs[i].style.backgroundPosition='0px -'+i+'px';
+        k=i;
+    }
+    oldi=k;
+
+    for(var i=fpos; i<height; i++)
+    {
+        imgs[i].style.backgroundPosition='0px -'+fpos+'px';
+    }
+
+    fpos+=delta;
+
+    if (fpos<height)    setTimeout(filler, 20);
+}
+
+window.onload=function()
+{
+    init();
+    filler();
+}
+</script>
+</body>
+</html>

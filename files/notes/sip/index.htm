@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Нарезка из картинок</title>
+    <script src="sip.js"></script>
+    <script src="/js/metrika.js" defer="defer"></script>
+<style>
+html, body {
+    font-family:Arial, sans-serif;
+    font-size:1em;
+    color:#000;
+    border:0;
+    padding:0;
+    margin:0;
+    width:100%;
+}
+
+#presip {
+    position:absolute;
+    top:30px;
+}
+
+#presip div {
+    position:absolute;
+    background-color:#ffa;
+    z-index:1;
+    border:1px solid #666;
+    background-repeat:no-repeat;
+    background-position:top left;
+}
+
+#prepreSip {
+    position:absolute;
+    top:100px;
+    left:50%;
+    margin-left:-420px;
+}
+
+#realise {
+    position:absolute;
+    top:480px;
+    margin-top:-1em;
+    left:50%;
+    margin-left:-420px;    
+}
+
+#idea {
+    position:absolute;
+    top:80px;
+    margin-top:-1em;
+    left:50%;
+    margin-left:-420px;    
+}
+
+#sip img {
+    margin:0;
+    padding:0;
+    position:absolute;
+    z-index:1;
+    width:200px;
+    height:133px;
+    left:100px;
+    top:100px;
+    border:1px solid #aaa;
+    background-repeat:no-repeat;
+    background-position:top left;
+    background-color:#ffe;
+}
+
+#sip {
+    position:absolute;
+    left:50%;
+    top:500px;
+    margin-left:-420px;
+}
+</style>
+</head>
+<body>
+<div id="prepreSip">
+    <p><input id="showimg" type="checkbox" onclick="javascript:preSip.setBackgrounds(this.checked);" /> <label for="showimg">Отображать картинки</label></p>
+    <div id="presip"></div>
+</div>    
+    <h2 id="idea">Задумка</h2>
+    <h2 id="realise">Реализация</h2>
+    <div id="sip"></div>    
+<script>
+function preSip()
+{
+    var ac=5;
+
+    var delta=50;
+    var len=11;
+
+    var id='presip';
+    
+    var imgSmallHeight=150;
+    var imgHeight=195;
+    
+    var imgWidth=260;
+    var imgSmallWidth=200;
+    
+    var imgY=20;
+    
+    preSip.mouseover=function(e)
+    {
+        ac=parseInt(getTargetId(e).replace(new RegExp(id), ''));
+        preSip.rebuild();
+    }
+
+    preSip.rebuild=function()
+    {
+        var kx=false;
+        
+        for(var i=1; i<=len; i++)
+        {
+            if (i==ac)
+            {
+                $(id+i).style.zIndex=100;
+                kx=true;
+                sizeTo(id+i, imgWidth, imgHeight);
+                moveTo(id+i, delta*(i-1), imgY-Math.floor((imgHeight-imgSmallHeight)/2));
+            }
+            else
+            {
+                if (!kx)
+                {
+                    $(id+i).style.zIndex=i;
+                    sizeTo(id+i, imgSmallWidth, imgSmallHeight);
+                    moveTo(id+i, delta*(i-1), imgY);
+                }
+                else
+                {
+                    $(id+i).style.zIndex=100-i;
+                    sizeTo(id+i, imgSmallWidth, imgSmallHeight);
+                    moveTo(id+i, delta*(i-1)+imgWidth-imgSmallWidth, imgY);
+                }
+            }
+        }
+    }
+
+    preSip.catchWheel=function(e)
+    {
+        var ua=window.navigator.userAgent.toLowerCase();
+
+        var isk=false;
+        if (ua.indexOf('safari') != -1 || ua.indexOf('khtml') != -1)    isk=true;
+
+        var target=window, event=(document.all || window.opera || isk) ? (target=document, 'mousewheel') : 'DOMMouseScroll';
+        (e.type==='mouseover') ? addHandler(target, event, preSip.getWheelTurn) : removeHandler(target, event, preSip.getWheelTurn);
+    }
+
+    preSip.getWheelTurn=function(e)
+    {
+        var delta;
+        
+        if (e.detail)    delta=e.detail/3;
+        else if (e.wheelDelta)    delta=e.wheelDelta/120;
+        
+        if (delta)
+        {
+            ac+=delta;
+            if (ac<1)    ac=1;
+            if (ac>len)    ac=len;
+            
+            preSip.rebuild();
+        }
+        
+        return (e.preventDefault) ? e.preventDefault() : e.returnValue=false;
+    }
+    
+    preSip.setBackgrounds=function(c)
+    {
+        for(var i=1; i<=len; i++)
+        {
+            var t='';
+            if (c)    t='url("'+i+'.jpg")';
+            
+            $(id+i).style.backgroundImage=t;
+        }    
+    }
+    
+    for(var i=1; i<=len; i++)
+    {
+        var el;
+        el=document.createElement('div');
+        el.id=id+i;
+        el.className=id;
+        el.onmouseover=preSip.mouseover;
+        
+        $(id).appendChild(el);
+        moveTo(id+i, i*delta, imgY);
+    }    
+    
+    preSip.rebuild();    
+
+    addHandler($(id), 'mouseover', preSip.catchWheel);
+    addHandler($(id), 'mouseout', preSip.catchWheel);
+}
+
+function sipOnload()
+{
+    preSip();
+    Sip();
+    setTimeout('$(\'showimg\').checked=false;', 300);
+}
+
+window.onload=sipOnload;
+</script>
+</body>
+</html>

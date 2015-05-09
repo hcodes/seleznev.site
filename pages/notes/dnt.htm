@@ -1,0 +1,38 @@
+<p>Уже сейчас можно встроить поддержку <a href="http://donottrack.us" target="_blank">doNotTrack</a> в установку кода счётчика Метрики.<br />
+Для этого необходимо создание объекта <em>new Ya.Metrika</em> обвернуть условием.</p>
+</p>
+<pre>
+<code class="javascript">function doNotTrack() {
+    return (navigator.msDoNotTrack == '1' || navigator.doNotTrack == 'yes') ? true : false;
+}
+
+if (!doNotTrack()) {
+    w.yaCounterXXXXXX = new Ya.Metrika({id: XXXXXX});
+}</code>
+</pre>
+<p>Где XXXXXX — номер счётчика Метрики.</p>
+
+<p>Также можно подсчитать у какого количества пользователей установлен флажок запрета отслеживания.<br/>
+Добавим передачу параметров при инициализации объекта <em>Ya.Metrika</em>.
+</p>
+
+<pre>
+<code class="javascript">function doNotTrack() {
+    return (navigator.msDoNotTrack == '1' || navigator.doNotTrack == 'yes') ? true : false;
+}
+
+var ymParams = {
+    doNotTrack: {}
+};
+
+if (doNotTrack()) {
+    ymParams.doNotTrack.on = 1;
+}
+else {
+    ymParams.doNotTrack.off = 1;
+}
+
+w.yaCounterXXXXXX = new Ya.Metrika({id: XXXXXX, params: ymParams});
+</code>
+</pre>
+<p>Статистику можно будет посмотреть в отчёте «Параметры визитов».</p>

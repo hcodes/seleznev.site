@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages>
+    <common>
+        <description>Денис Селезнёв</description>
+        <keywords>Денис Селезнёв, JavaScript, XHTML, CSS, Типограф, PHP</keywords>
+        <title>Денис Селезнёв</title>
+    </common>
+    <page name="index">
+        <title>Денис Селезнёв</title>
+        <without_title_body />
+    </page>
+    <page name="table">
+        <title>Архив</title>
+    </page>
+    <page name="instruments">
+        <title>Инструменты</title>
+        <page name="mousemove">
+            <title>Сохранение координат движения мышки</title>
+        </page>
+        <page name="typograf">
+            <location>https://github.com/typograf/typograf/</location>
+        </page>
+        <page name="text-photo">
+            <title>Текстовая фотография</title>
+        </page>
+        <page name="test-html">
+            <title>Тест HTML и JavaScript</title>
+            <js>
+                <link href="/js/jquery.js" />
+            </js>
+        </page>
+    </page>
+    <page name="notes">
+        <title>Заметки</title>
+        <page name="server_yametrika">
+            <title>Серверное отслеживание посетителей с помощью Яндекс.Метрики</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+        <page name="webvisor_iframe">
+            <title>Как заставить работать Вебвизор, если сайт запрещён к показу внутри IFRAME</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+        <page name="nojs_params">
+            <title>Отправка параметров визитов в Метрику без JavaScript</title>
+            <js>
+                <link href="/js/jquery.js" />
+            </js>
+        </page>
+        <page name="track_internal_search_yandex">
+            <title>Отслеживаем внутренний поиск Яндекса на своем сайте с помощью Яндекс.Метрики</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+        <page name="track_bits">
+            <title>Отслеживание битности операционной системы с помощью Яндекс.Метрики</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+        <page name="sleep_tracker">
+            <title>Отслеживание режима перехода компьютера в сон с помощью Яндекс.Метрики</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+        <page name="dnt">
+            <title>doNotTrack и Яндекс.Метрика</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+        <page name="mcyandex">
+            <title>mc.yandex.ru</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+        <page name="track_hover">
+            <title>Отслеживание ховеров с помощью Яндекс.Метрики</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+        <page name="track_print">
+            <title>Отслеживание печати страниц с помощью Яндекс.Метрики</title>
+            <js>
+                <link href="/js/highlight.js" />
+            </js>
+        </page>
+
+        <page name="dotted_graphics">
+            <title>Ещё один способ нарисовать круги в Mozilla Firefox</title>
+            <js>
+                <link href="/js/jquery.js" /><link href="/js/jquery.js" />
+            </js>
+        </page>
+        <page name="check_xml">
+            <title>Проверка разметки XML на JavaScript</title>
+        </page>
+        <page name="detect_flashblock">
+            <title>Определение блокировки флеша Flashblock'ом</title>
+        </page>
+        <page name="snow">
+            <location>https://github.com/hcodes/snowflakes</location>
+        </page>
+        <page name="sopacity">
+            <title>Прозрачность в разных областях на картинке</title>
+        </page>
+        <page name="wave-pagination">
+            <title>Волновой пейджинг</title>
+            <js>
+                <link href="/js/jquery.js" />
+                <link href="/files/notes/wave-pagination/jquery.wave_pagination.js" />
+            </js>
+            <css>
+                <link href="/files/notes/wave-pagination/wave_pagination.css" />
+            </css>
+        </page>
+        <page name="svetofor">
+            <title>Светофор</title>
+        </page>
+        <page name="slider">
+            <title>1001-й слайдер на jQuery</title>
+        </page>
+        <page name="15">
+            <title>«Пятнашки» на вашем сайте</title>
+        </page>
+        <page name="filters_photoshop_html">
+            <title>Фильтры Photoshop в HTML</title>
+        </page>
+        <page name="autotextarea">
+            <title>Самораздвижная textarea</title>
+        </page>
+        <page name="border-style-dotted">
+            <title>Рамочная графика</title>
+        </page>
+        <page name="textslider">
+            <title>Текстовый слайдер</title>
+            <js>
+                <link href="/js/jquery.js" />
+                <link href="/files/notes/textslider/jquery.textslider.js" />
+                <link href="/js/jquery-ui.js" />
+                <link href="/files/notes/textslider/types.js" />
+                <link href="/files/notes/textslider/minicss.js" />
+            </js>
+            <css>
+                <link href="/files/notes/textslider/textslider.css" />
+                <link href="/files/notes/textslider/example.css" />
+            </css>
+        </page>
+        <page name="add_monitor">
+            <title>Определение наличия нескольких мониторов с помощью JavaScript</title>
+        </page>
+        <page name="silverlight_version">
+            <title>Определение версии Silverlight</title>
+        </page>
+    </page>
+    <page name="twinz">
+        <title>Заклонируй себя</title>
+    </page>
+</pages>

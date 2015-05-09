@@ -1,0 +1,63 @@
+#wave-pagination {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.wave-pagination__left-gradient, .wave-pagination__right-gradient {
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 2.7em;
+    z-index: 1;
+}
+
+.wave-pagination__left-gradient {
+    left: 0;
+    background: url('./images/left_gradient.png') top left no-repeat;
+}
+
+.wave-pagination__right-gradient {
+    right: 0;
+    background: url('./images/right_gradient.png') top left no-repeat;
+}
+
+.wave-pagination__mover {
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 2.7em;    
+    width: 1000%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#wave-pagination a, .wave-pagination__selected {
+    position: relative;
+    font-size: 1em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+.wave-pagination__selected {
+    background-color: #706A9B;
+    color: #fff;
+    margin-left: 0.2em;
+    margin-right: 0.2em;    
+}
+
+#wave-pagination a:link,
+#wave-pagination a:visited,
+#wave-pagination a:hover,
+#wave-pagination a:active {
+    color: #000;
+    text-decoration: none;
+}
+
+#wave-pagination a.wave-pagination__link:link,
+#wave-pagination a.wave-pagination__link:visited,
+#wave-pagination a.wave-pagination__link:hover,
+#wave-pagination a.wave-pagination__link:active {
+    color: #037EC4;
+    text-decoration: underline;
+}

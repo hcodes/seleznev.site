@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Метаморфозы цвета</title> 
+    <script src="/js/jquery.js"></script>
+    <script src="plasma.js"></script>
+    <script src="/js/metrika.js" defer="defer"></script>
+    <style>
+        html, body {
+            padding:0;
+            margin:0;
+            background:#000;
+            position:absolute;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;
+            overflow:hidden;
+        }
+
+        #plasma {
+            position:absolute;
+            left:50%;
+            top:50%;
+            margin-left:-512px;
+            margin-top:-384px;
+            width:1024px;
+            height:768px;
+        }        
+            #plasma img {
+                position:absolute;
+                display:none;
+                z-index:1;
+                width:1024px;
+                height:768px;
+            }
+    
+        #hint {
+            left:100px;
+            top:100px;
+            color:#fff;
+            position:absolute;
+            z-index:10;
+        }
+    </style>
+</head>
+<body>
+    <div id="hint">Загружаю цвет…</div>
+    <div id="plasma">
+        <img src="1.jpg" alt="" />
+        <img src="2.jpg" alt="" />
+        <img src="3.jpg" alt="" />
+        <img src="4.jpg" alt="" />
+        <img src="5.jpg" alt="" />
+        <img src="6.jpg" alt="" />
+        <img src="7.jpg" alt="" />
+    </div>
+</body>
+</html>

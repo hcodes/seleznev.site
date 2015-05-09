@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Радуга</title> 
+    <script src="/js/jquery.js"></script>
+    <script src="rainbow.js"></script>
+    <script src="/js/metrika.js" defer="defer"></script>
+    <style>
+        html {
+            padding:0;
+            margin:0;
+        }
+        
+        body, #rainbow {
+            position:absolute;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;
+            margin:0;
+            padding:0;
+        }
+
+        #rainbow div {
+            position:absolute;
+            left:0;
+            top:0;
+            width:100%;
+            height:10px;
+            background-color:#fff;
+            _font-size:0;
+        }
+
+        #control {
+            position:absolute;
+            left:100px;
+            top:50px;
+            z-index:10;
+            padding:5px 8px;
+            background:#eee;
+            border:1px solid #ccc;
+        }
+            #control span {
+                color:#000;
+                margin-left:1em;
+            }
+    </style>
+</head>
+<body>
+    <div id="control"><input id="minus" type="button" value="-" /> <input id="plus" type="button" value="+" /> <span> </span></div>
+    <div id="rainbow"></div>
+</body>
+</html>

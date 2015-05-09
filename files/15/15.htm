@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="15.css" />
+    <link href="i/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>15</title>
+    <script src="/js/metrika.js" defer="defer"></script>
+    <script src="15.js"></script>
+</head>
+<body>
+    <div id="content">
+        <div id="menu"><span class="inter" onclick="javascript:newGame();">Новая игра</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="inter" onclick="javascript:holo();">Подсказка</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="help15"><p>Суть игры — собрать картинку, переставляя квадраты.</p><p>Вы можете загрузить картинку с другого сайта, рекомендуемый размер 600×600 точек.</p></div><span id="menuHelp15" class="inter" onclick="javascript:return help15();">Справка</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="selectImage"><input type="text" id="urlImage" value="http://" />&nbsp;<input id="downloadImage" type="button" value="Загрузить" onclick="javascript:downloadImage();" /></span><span id="menuDownloadImage" class="inter" onclick="javascript:showUrlImage();">Загрузить фото</span></div>
+        <div id="game">
+            <img alt="" src="i/x.gif" id="c1" /><img alt="" src="i/x.gif" id="c2" /><img alt="" src="i/x.gif" id="c3" /><img alt="" src="i/x.gif" id="c4" />
+            <img alt="" src="i/x.gif" id="c5" /><img alt="" src="i/x.gif" id="c6" /><img alt="" src="i/x.gif" id="c7" /><img alt="" src="i/x.gif" id="c8" />
+            <img alt="" src="i/x.gif" id="c9" /><img alt="" src="i/x.gif" id="c10" /><img alt="" src="i/x.gif" id="c11" /><img alt="" src="i/x.gif" id="c12" />
+            <img alt="" src="i/x.gif" id="c13" /><img alt="" src="i/x.gif" id="c14" /><img alt="" src="i/x.gif" id="c15" /><img src="i/x.gif" id="c16" alt="" />
+            <img id="hinter" src="i/x.gif" alt="Подсказка" />
+        </div>
+        <div id="prefsPanel">
+            <div id="mycookie"></div>
+            <div id="skins">
+                <p id="s1" class="selected"><img src="i/skins/small/main.jpg" class="preview" alt="" onclick="javascript:selectImage('main.jpg', 1);" /><span onclick="javascript:selectImage('main.jpg', 1);">Подсолнух</span></p>
+                <p id="s5" class="noselected"><img src="i/skins/small/road.jpg" class="preview" alt="" onclick="javascript:selectImage('road.jpg', 5);" /><span onclick="javascript:selectImage('road.jpg', 5);">Дорога</span></p>
+                <p id="s3" class="noselected"><img src="i/skins/small/cat.jpg" class="preview" alt="" onclick="javascript:selectImage('cat.jpg', 3);" /><span onclick="javascript:selectImage('cat.jpg', 3);">Кошка</span></p>
+                <p id="s4" class="noselected"><img src="i/skins/small/marg.jpg" class="preview" alt="" onclick="javascript:selectImage('marg.jpg', 4);" /><span onclick="javascript:selectImage('marg.jpg', 4);">Маргаритки</span></p>
+                <p id="s2" class="noselected"><img src="i/skins/small/zakat.jpg" class="preview" alt="" onclick="javascript:selectImage('zakat.jpg', 2);" /><span onclick="javascript:selectImage('zakat.jpg', 2);">Закат</span></p>
+                <p id="s6" class="noselected"><img src="i/skins/small/frog.jpg" class="preview" alt="" onclick="javascript:selectImage('frog.jpg', 6);" /><span onclick="javascript:selectImage('frog.jpg', 6);">Лягушка</span></p>
+            </div>
+        </div>
+        <div id="copy">© 2007 <a class="gray" href="mailto:info@webfilin.ru">Селезнёв Д.Л.</a></div>
+    </div>
+</body>
+</html>

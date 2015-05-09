@@ -1,0 +1,27 @@
+<p>Работает это так, устанавливаем таймер, который срабатывает каждую минуту.<br />Если таймер не сработал через 10 минут, то компьютер скорее всего был в режиме сна.</p>
+<pre><code>&lt;script&gt;
+    function SleepTracker(callback) {
+        var interval = 1000 * 60,
+            maxInterval = 1000 * 60 * 10,
+            lastTime = +new Date();
+            
+        return setInterval(function() {
+            var currentTime = +new Date();
+            if (currentTime - lastTime > maxInterval) {
+                callback(currentTime - lastTime);
+            }
+            
+            lastTime = currentTime;
+        }, interval);
+    };
+
+    SleepTracker(function() {
+        yaCounterXXXXXX.params('SleepTracker', window.location.href, 1);
+    });
+&lt;/script&gt;
+</code>
+</pre>
+<p>Размещаем на своём сайте, в HTML-код страницы добавляем данный код.</p>
+<p>Не забываем поменять <em>XXXXXX</em> на свой номер счётчика Метрики.</p>
+<p>Статистику можно будет посмотреть в отчёте «Параметры визитов».<br />Появится ветка <em>SleepTracker</em> со списком адресов страниц, на которых произошло «засыпание».</p>
+<p>И в заключении, скрипт можно дорабатывать и собирать статистику отдельно для активных (вкладка была открыта, в фокусе) и неактивных страниц перед засыпанием.</p>

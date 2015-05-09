@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Синусоидный текст</title>
+<meta charset="utf-8" />
+<style>
+html, body {margin:0; padding:0; border:0; font-size:16px;}
+#crazytext {margin:4em; font-size:2em; margin-top:12em;}
+#crazytext span {position:relative;}
+</style>
+<script src="/js/metrika.js" defer="defer"></script>
+</head>
+<body>
+
+<div style="position:absolute; left:0.8em; top:70px; font-size:10em; margin:0; padding:0;">O<span id="lefteye" style="position:absolute; margin-left:-0.6em;">o</span></div><div style="position:absolute; left:3.8em; top:70px; font-size:10em; margin:0; padding:0;">O<span id="righteye" style="position:absolute; margin-left:-0.6em;">o</span></div>
+
+<p id="crazytext">Рыбный текст плывет по волнам.</p>
+
+<script>
+function $(id)
+{
+    return document.getElementById(id);
+}
+
+function getRandom(max)
+{
+    return Math.floor(Math.random()*max);
+}
+
+var coords=[];
+var cr=$('crazytext').innerHTML;
+var text='';
+
+for(var i=0; i<cr.length; i++)    text+='<span style="left:0; top:0;">'+cr.charAt(i)+'<\/span>';
+$('crazytext').innerHTML=text;
+
+var spans=$('crazytext').getElementsByTagName('span');
+
+for(var i=0; i<spans.length; i++)    coords.push([spans[i].offsetLeft, spans[i].offsetTop]);
+
+var step=0;
+var effect=0;
+
+setInterval('effect=getRandom(3);', 6000);
+showText();
+closeEyes();
+
+function showText()
+{
+    step+=10;
+
+    for(var i=0; i<spans.length; i++)
+    {
+        if (effect!=2)    spans[i].style.top=''+(Math.cos(2*Math.PI*(coords[i][0]+step)/1000)*100)+'px';
+        if (effect!=1)    spans[i].style.left=''+(Math.cos(2*Math.PI*(coords[i][0]+step)/1000)*100)+'px';
+    }
+
+    setTimeout('showText();', 30);
+}
+
+function closeEyes()
+{
+    $('lefteye').style.visibility='hidden';
+    $('righteye').style.visibility='hidden';
+
+    setTimeout('openEyes()', 100);
+    setTimeout('closeEyes()', 3000+getRandom(5000));
+}
+
+
+function openEyes()
+{
+    $('lefteye').style.visibility='visible';
+    $('righteye').style.visibility='visible';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>...</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="twinz.css" />
+    <link href="i/favicon.gif" rel="shortcut icon" type="image/x-icon" />
+    <script src="twinz.js"></script>
+</head>
+<body>
+<div id="intro">
+<h1>Соглашение о клонировании</h1>
+<p>1. Я, сидящий(ая) за компьютером, добровольно и без принуждения подвергаю себя клонированию.</p>
+<p>2. Отказываюсь влиять и противодействовать клону в его начинаниях.</p>
+<p>3. Обязуюсь выплачить более 50% своей заработной платы на содержание клона.</p>
+<p>4. Клон имеет право выступать от моего имени в любом месте.</p>
+<p>5. Обязуюсь хранить в секрете о данном соглашении.</p>
+<p>6. Отказываюсь от прав на клона и не имею претензий к исполнителю ОАО «СуперКлон».</p>
+<p class="small gray" style="color:#222;">Клона запрещается кормит шаурмой.</p>
+<p class="small gray" style="margin-left:30em;"><em>ОАО «СуперКлон»</em></p>
+<p style="padding-top:1em;"><input type="checkbox" id="sure" onclick="javascript:checkSure();" /> <label for="sure">Я согласен(а)</label></p>
+<p><input style="font-size:45px;" id="nextButton" type="button" value="Далее" /></p>
+<p class="small" style="color:#333;">Звук есть? Наушники не найдены?</p>
+</div>
+
+<div id="pzintro2" style="position:absolute; display:block; left:0px; top:0px;">
+    <div id="pzcapa" style="top:0px; left:-700px; position:absolute;">
+        <p>Как ни странно, все сотрудники студии себя клонировали. И случилось страшное, клонирование произошло с грубейшими техническими условиями.</p>
+        <p>Клоны стали очень опасны. Они задумали дерзкий план:<br />29 декабря напоить сотрудников студии и в невменяемом состоянии поместить их в подвал под арест.</p>
+        <p>Клоны будут выдавать себя за реальных людей, а реальные люди будут пахать за еду.</p>
+        <p><strong>Ваша миссия — найти и обезвредить клонов.<br /><br />Люди, cпасите мир!</strong></p>
+    </div>
+    <div id="pzbutton" style="top:-100px; left:-600px; position:absolute;"><input type="button" onclick="javascript:startIntro23();" style="font-size:45px;" value="Вперёд!" /></div>    
+    <div id="pzaddr" class="gray" style="top:-60px; left:400px; position:absolute;"><em>Москва, где-то на Неглинке, холодно</em></div>
+</div>
+
+<div id="game">
+    <div id="text"><h1>Найди клонов и спаси Студию!</h1></div>
+    <div id="timer"><div id="timerhider"></div><img src="i/timer.jpg" id="timerliner" /></div>
+    <div id="field">
+        <div id="subfield"></div>
+    </div>
+</div>
+
+
+<div id="endno"><h1>Миссия полностью провалена.</h1><p class="small">p.s.: Играть заново не рекомендуется.</p></div>
+<div id="endyes"><h1>Вражеские силы разгромлены.<br /><br />Поздравляем, Вы спасли Студию!!!<br /><br />С НОВЫМ ГОДОМ!</h1></div>
+
+<div id="sound"></div>
+<script>
+window.onload=startIntro;
+$('nextButton').onclick=startIntro2;
+
+function startIntro()
+{
+    checkSure();
+    playSound('i/music/intro.mp3');
+}
+
+function checkSure()
+{
+    if ($('sure').checked)    $('nextButton').disabled=false; else $('nextButton').disabled=true;
+}
+</script>
+<script src="/js/metrika.js" defer="defer"></script>
+</body>
+</html>

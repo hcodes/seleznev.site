@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>Фильтры Photoshop в HTML</title>
+  <meta charset="utf-8" />
+  <script src="/js/jquery.js"></script>
+  <script src="./photoshop_effects.js"></script>
+  <script src="/js/metrika.js" defer="defer"></script>
+  <style>
+        html, body {
+            margin:0;
+            padding:0;
+        }
+        
+        body {
+            padding:100px;
+        }
+        
+        #container {
+            position:relative;
+            width:640px;
+            height:480px;
+            clear:both;
+        }
+
+        #img1, #img2, #img3, #img4 {
+            position:absolute;
+            left:0;
+            top:0;
+            z-index:2;
+        }
+        
+        #img1 {
+            background:#fff;
+        }
+
+        #img2, #img4 {
+            z-index:1;
+        }
+        
+        #img3 {
+            left:100px;
+            top:100px;
+        }
+        
+        #about-secret {
+            display:none;
+        }
+        
+        #secret {
+            position:relative;
+            width:100%;
+            display:none;
+            height:600px;
+        }
+        
+        #effects {
+            padding:0;
+            margin:0;
+            height:2em;
+        }
+            #effects li {
+                list-style-type:none;
+                margin:0;
+                padding:0 1em 0 0;
+                float:left;
+            }
+
+        span.ajax {
+            color:blue;
+            border-bottom:1px dotted blue;
+            cursor:pointer;
+            line-height:1.55em;
+        }
+
+        body span.selected {
+            color:#000;
+            border-bottom:1px dotted #fff;
+        }
+        
+        h1 {
+            font-size:1.3em;
+            font-family:Gergia, serif;
+            font-weight:normal;
+        }
+        
+        #do {
+            position:relative;
+        }
+            #do div {
+                position:absolute;
+                left:300px;
+            }
+    </style>
+</head>
+<body>
+<h1>Фильтры Photoshop в HTML</h1>
+<ul    id="effects">
+    <li><span class="ajax selected">Blur</span></li>
+    <li><span class="ajax">Underpainting</span></li>
+    <li><span class="ajax">Neon Glow</span></li>
+    <li><span class="ajax">Cutout</span></li>
+    <li><span class="ajax">Edge</span></li>
+    <li><span class="ajax">Emboss</span></li>
+    <li><span class="ajax">Sepia</span></li>
+</ul>
+
+<div id="container">
+    <img id="img1" src="./cherry.jpg" width="640" height="480" alt="" />
+    <img id="img2" src="./blur.jpg" width="640" height="480" alt="" />
+</div>
+
+<div id="do">
+    <div>
+        Наводим и отводим мышку на картинку ↑
+    </div>
+</div>
+
+<p><span id="how" class="ajax">Как это работает?</span></p>
+<div id="about-secret">
+    <p>«Отфильтрованная» картинка находится за оригинальной.<br />При изменении прозрачности оригинальной картинки возникает иллюзия динамического применения фильтра.</p>
+</div>
+<div id="secret">
+    <img id="img3" src="./cherry.jpg" width="640" height="480" alt="" />
+    <img id="img4" src="./blur.jpg" width="640" height="480" alt="" />
+</div>
+</body>
+</html>

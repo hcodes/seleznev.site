@@ -1,0 +1,62 @@
+html, body {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.smoke-container-a div {
+    position: absolute;
+}
+
+.smoke-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.smoke {
+    position: absolute;
+    left: 40%;
+    top: 0;
+    font-style: italic;
+}
+    .smoke div {
+        margin-bottom: 1em;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .smoke-r span{
+        position: relative;
+        left: 0;
+    }
+
+    .smoke-a span {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .smoke-a div {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+        .smoke-a div.all-a span {
+            position: absolute;
+        }
+
+        .smoke-a div.all-s span {
+            position: static;
+        }
+        
+        .smoke-a div.all-hide span {
+            visibility: hidden;
+        } 

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./pa.css" />
+    <script src="./jquery.js"></script>
+    <script src="./lib.js"></script>
+    <script src="./pa.js"></script>
+    <script src="/js/metrika.js" defer="defer"></script>
+    <title>Фотоарканоид</title>
+</head>
+<body>
+    <ul id="menu">
+        <li>— <span class="ajax" onclick="pa.figure.rnd();">Хаотично</span></li>
+        <li>— <span class="ajax" onclick="pa.figure.chess();">Шахматы</span></li>
+        <li>— <span class="ajax" onclick="pa.figure.table();">Таблицой</span></li>
+        <li>— <span class="ajax" onclick="pa.figure.line();">Линией</span></li>
+        <li>— <span class="ajax" onclick="pa.figure.smile();">А можно так?</span></li>
+        <li><span class="ajax" onclick="pa.startArcanoid();">Запустить шар</span></li>
+    </ul>
+    <div id="pa-photos">
+        <a href="images/1.jpg"><img src="images/preview/1.jpg" alt="" /></a>
+        <a href="images/2.jpg"><img src="images/preview/2.jpg" alt="" /></a>
+        <a href="images/3.jpg"><img src="images/preview/3.jpg" alt="" /></a>
+        <a href="images/4.jpg"><img src="images/preview/4.jpg" alt="" /></a>
+        <a href="images/5.jpg"><img src="images/preview/5.jpg" alt="" /></a>
+        <a href="images/6.jpg"><img src="images/preview/6.jpg" alt="" /></a>
+        <a href="images/7.jpg"><img src="images/preview/7.jpg" alt="" /></a>
+        <a href="images/8.jpg"><img src="images/preview/8.jpg" alt="" /></a>
+        <a href="images/9.jpg"><img src="images/preview/9.jpg" alt="" /></a>
+        <a href="images/10.jpg"><img src="images/preview/10.jpg" alt="" /></a>
+        <a href="images/11.jpg"><img src="images/preview/11.jpg" alt="" /></a>
+    </div>
+    <div id="pa-show-big"><img id="pa-big-img" src="./loader.gif" alt="" /></div>
+    <img id="pa-bat" src="./bat.gif" alt="" />
+    <img id="pa-ball" src="./ball.gif" alt="" />
+</body>
+</html>

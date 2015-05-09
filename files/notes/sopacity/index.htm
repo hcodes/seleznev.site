@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="/js/metrika.js" defer="defer"></script>
+    <title>Плавное перетекание</title>
+</head>
+<body>
+<h4 style="padding-left:20px;">Плавное перетекание   <a href="2.htm">Режим наложения</a>   <a href="3.htm">Случайная прозрачность по квадратам</a></h4>
+<div style="position:absolute; left:700px; top:70px; background-color:#ffc; padding:0.3em; border:1px solid #ccc;">←↓ Нужно кликать по картинкам.</div>
+<div style="position:absolute; left:780px; width:25em; top:180px; background-color:#ffc; padding:0.5em; border:1px solid #ccc;"><strong>В чём фишка?</strong><br />Прозрачность меняется не&nbsp;у&nbsp;всей картинки, а&nbsp;только в&nbsp;области перекрытия.</div>
+
+<div style="position:absolute; left:50px; top:50px;">
+    <img onclick="startx('im4');" id="im1" src="1.jpg" style="cursor:hand; cursor:pointer; position:absolute; left:0px; top:0px; z-index:9;"/>
+    <img onclick="startx('im3');" id="im2" src="2.jpg" style="cursor:hand; cursor:pointer; position:absolute; left:100px; top:100px; z-index:10;"/>
+    <img onclick="startx('im4');" id="im3" src="x.gif" style="cursor:hand; cursor:pointer; background:url('1.jpg') -100px -100px no-repeat; position:absolute; left:100px; top:100px; width:500px; height:500px; z-index:12;"/>
+    <img onclick="startx('im3');" id="im4" src="x.gif" style="cursor:hand; cursor:pointer; background:url('2.jpg') 0px 0px no-repeat; position:absolute; left:100px; top:100px; width:500px; height:500px; z-index:11;"/>
+</div>
+
+<script>
+// © 2007 Селезнёв Д. Л., info@webfilin.ru
+
+var faden=100;
+var timer=null;
+
+startx('im4');
+
+function startx(id)
+{
+    if (timer)    clearTimeout(timer);
+
+    if (id=='im4')
+    {
+        if (parseInt($('im4').style.zIndex)>parseInt($('im3').style.zIndex))
+        {
+            id='im3';
+            swapZIndex('im3', 'im4');
+            setOpacity('im4', 100);
+        }
+        else
+        {
+            swapZIndex('im3', 'im4');
+            setOpacity('im3', 100);
+        }
+
+    }
+    else
+    {
+        if (parseInt($('im3').style.zIndex)>parseInt($('im4').style.zIndex))
+        {
+            id='im4';
+            swapZIndex('im3', 'im4');
+            setOpacity('im3', 100);
+        }
+        else
+        {
+            swapZIndex('im3', 'im4');
+            setOpacity('im4', 100);
+        }
+    }
+
+    faden=100;
+    fadeOut(id);
+}
+
+function swapZIndex(id1, id2)
+{
+    var buf=$(id1).style.zIndex;
+    $(id1).style.zIndex=$(id2).style.zIndex;
+    $(id2).style.zIndex=buf;
+}
+
+function fadeOut(id)
+{
+    faden-=10;
+
+    if (faden<0)
+    {
+        faden=0;
+        timer=null;
+    }
+    else
+    {
+        setOpacity(id, faden);
+        timer=setTimeout('fadeOut(\''+id+'\')', 10);
+    }
+}
+
+function $(id)    {return document.getElementById(id);}
+
+function setOpacity(id, opacity)
+{
+    var object=$(id).style;
+
+    object.filter='alpha(opacity='+opacity+')';
+    object.opacity=(opacity/100);
+}
+</script>
+</body>
+</html>
