@@ -2,6 +2,6 @@
 index.php
 *php/
 node_modules/
-src/css/jquery.js
-css/
-js/
+src/js/jquery.js
+./css/
+./js/

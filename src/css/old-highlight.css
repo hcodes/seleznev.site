@@ -1,0 +1,23 @@
+/* Подсветка синтаксиса кода */
+span.comment {color: green; font-size: 90%;}
+span.comment a:link,
+span.comment a:visited,
+span.comment a:hover,
+span.comment a:active {color: green; text-decoration: underline;}
+
+span.magicnum {color: red;}
+span.operator {font-weight: bold; color: #009;}
+span.text {color: #666;}
+
+span.tag {color: blue;}
+span.attr {color: red;}
+
+span.attr-value {color: #8000ff; font-weight: bold;}
+span.attr-value a:link,
+span.attr-value a:visited,
+span.attr-value a:hover,
+span.attr-value a:active {color: #8000ff; font-weight: bold; text-decoration: underline;}
+
+
+span.value {color: black; font-weight: bold;}
+span.equal {color: black;}
