@@ -3,5 +3,5 @@ index.php
 *php/
 node_modules/
 src/js/jquery.js
-./css/
-./js/
+css/main.css
+js/*.gz
