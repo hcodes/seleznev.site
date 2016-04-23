@@ -25,23 +25,8 @@
   "devDependencies": {
     "gulp": "~3.9.1",
     "gulp-concat": "~2.6.0",
-    "gulp-filter": "~4.0.0",
     "gulp-gzip": "^1.2.0",
-    "gulp-jsonlint": "^1.1.2",
     "gulp-rename": "~1.2.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-uglify": "~1.5.3",
-    "gulp-util": "~3.0.2",
-    "jquery": "^2.2.3",
-    "jquery-ui": "^1.10.5",
-    "highlight.js": "^9.3.0"
-  },
-  "scripts": {
-    "test": "npm run-script gulp && npm run-script jshint && npm run-script jscs && npm run-script unit-test-coverage",
-    "gulp": "./node_modules/.bin/gulp",
-    "jscs": "./node_modules/.bin/jscs .",
-    "jshint": "./node_modules/.bin/jshint .",
-    "unit-test": "./node_modules/.bin/mocha -u bdd -R spec --recursive test",
-    "unit-test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -u bdd -R spec --recursive test"
+    "jquery": "^2.2.3"
   }
 }
