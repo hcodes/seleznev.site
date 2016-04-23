@@ -1,11 +1,13 @@
 
-pre code {
-  display: block;
+pre code
+{
+    display: block;
 }
 
 pre code,
-pre .tag .title {
-  color: black;
+pre .tag .title
+{
+    color: black;
 }
 
 pre .string,
@@ -21,7 +23,8 @@ pre .aggregate,
 pre .template_tag,
 pre .addition,
 pre .flow,
-pre .stream {
+pre .stream
+{
     color: #800;
 }
 
@@ -29,8 +32,9 @@ pre .comment,
 pre .annotation,
 pre .template_comment,
 pre .diff .header,
-pre .chunk {
-  color: #888;
+pre .chunk
+{
+    color: #888;
 }
 
 pre .number,
@@ -38,7 +42,8 @@ pre .date,
 pre .regexp,
 pre .literal,
 pre .go .constant,
-pre .change {
+pre .change
+{
     color: #080;
 }
 
@@ -56,18 +61,21 @@ pre .doctype,
 pre .deletion,
 pre .envvar,
 pre .shebang,
-pre .input_number {
-    color: #88F
+pre .input_number
+{
+    color: #88f;
 }
 
-pre .css .tag {
-  font-weight: bold;
+pre .css .tag
+{
+    font-weight: bold;
 }
 
 pre .keyword,
 pre .id,
 pre .title,
 pre .built_in,
-pre .aggregate {
-  font-weight: bold;
+pre .aggregate
+{
+    font-weight: bold;
 }

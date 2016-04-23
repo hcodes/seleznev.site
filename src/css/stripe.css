@@ -1,83 +1,100 @@
-.stripe {
+.stripe
+{
     position: relative;
+
+    float: left;
+
+    width: 450px;
+    min-height: 220px;
     margin-top: 20px;
     margin-right: 30px;
     padding: 20px;
+
     background: #f0f0f0;
-    width: 450px;
-    float: left;
-    min-height: 220px;
 }
 
 .stripe__img-link
 {
     position: absolute;
-    left: 20px;
     top: 20px;
+    left: 20px;
 }
 
-.stripe__img-link:hover {
-    left: 20px;
+.stripe__img-link:hover
+{
     top: 20px;
+    left: 20px;
 }
 
 a.stripe__img-link,
-a.stripe__img-link:hover {
+a.stripe__img-link:hover
+{
     text-decoration: none;
 }
 
-.stripe_yaspeller .stripe__img-link {
-    left: 20px;
+.stripe_yaspeller .stripe__img-link
+{
     top: 20px;
+    left: 20px;
 }
 
-.stripe_typograf img {
+.stripe_typograf img
+{
     width: 170px;
     height: 170px;
 }
 
-.stripe_typograf .stripe__img-link {
-    left: 15px;
+.stripe_typograf .stripe__img-link
+{
     top: 30px;
+    left: 15px;
 }
 
-.stripe__text {
+.stripe__text
+{
     margin-left: 184px;
 }
 
-.stripe__text h2 {
+.stripe__text h2
+{
     font-size: 26px;
-    line-height: 30px;
     font-weight: normal;
-    padding: 0;
+    line-height: 30px;
+
     margin: 0 0 10px 0;
+    padding: 0;
 }
 
-.stripe__text ul {
+.stripe__text ul
+{
     margin: 0 0 0 20px;
     padding: 0;
 }
 
-.stripe__text li {
+.stripe__text li
+{
     margin: 0;
-    padding: 0 0.5em 0 0;
+    padding: 0 .5em 0 0;
 }
 
-@media all and (max-width: 600px) {
-    .stripe {
+@media all and (max-width: 600px)
+{
+    .stripe
+    {
         width: 100%;
         min-height: 0;
     }
 
-    .stripe__text {
+    .stripe__text
+    {
         margin-left: 0;
     }
 
     .stripe__img-link
     {
-       display: none;
+        display: none;
     }
-    
+
     .main-block li
     {
         display: block;
