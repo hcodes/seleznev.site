@@ -1,8 +1,17 @@
-var gulp = require('gulp'),
-    fs = require('fs'),
-    concat = require('gulp-concat'),
-    rename = require('gulp-rename'),
-    gzip = require('gulp-gzip');
+'use strict';
+
+const autoprefixer = require('gulp-autoprefixer');
+const cleancss = require('gulp-cleancss');
+const concat = require('gulp-concat');
+const fs = require('fs');
+const gulp = require('gulp');
+const gzip = require('gulp-gzip');
+const less = require('gulp-less');
+const rename = require('gulp-rename');
+
+const apBrowsers = {
+    browsers: ['ie >= 9', 'Firefox >= 24', 'Chrome >= 26', 'iOS >= 5', 'Safari >= 6', 'Android > 2.3']
+};
 
 gulp.task('jquery',function() {
     gulp.src('./node_modules/jquery/dist/jquery.min.js')
@@ -11,8 +20,11 @@ gulp.task('jquery',function() {
 });
 
 gulp.task('css',function() {
-    gulp.src('./src/css/*')
+    gulp.src('./src/less/*')
         .pipe(concat('main.css'))
+        .pipe(less())
+        .pipe(autoprefixer(apBrowsers))
+        .pipe(cleancss())
         .pipe(gulp.dest('./css'))
 });
 
