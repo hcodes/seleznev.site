@@ -1,20 +1,20 @@
 {
-  "name": "webfilin.ru",
+  "name": "seleznev.site",
   "description": "Private site",
   "version": "1.0.0",
   "author": {
     "name": "Denis Seleznev",
     "email": "hcodes@yandex.ru",
-    "url": "http://webfilin.ru"
+    "url": "http://seleznev.site"
   },
-  "homepage": "http://webfilin.ru",
+  "homepage": "http://seleznev.site",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hcodes/webfilin.ru.git"
+    "url": "git://github.com/hcodes/seleznev.site.git"
   },
   "engines": {
-    "node": ">= 5.0.0"
+    "node": ">= 6.0.0"
   },
   "files": [
     "dist",

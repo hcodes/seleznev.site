@@ -5,12 +5,12 @@ const cleancss = require('gulp-cleancss');
 const concat = require('gulp-concat');
 const fs = require('fs');
 const gulp = require('gulp');
-const gzip = require('gulp-gzip');
+//const gzip = require('gulp-gzip');
 const less = require('gulp-less');
 const rename = require('gulp-rename');
 
 const apBrowsers = {
-    browsers: ['ie >= 9', 'Firefox >= 24', 'Chrome >= 26', 'iOS >= 5', 'Safari >= 6', 'Android > 2.3']
+    browsers: ['ie >= 11', 'Firefox >= 36', 'Chrome >= 36', 'iOS >= 6', 'Safari >= 6', 'Android > 4.0']
 };
 
 gulp.task('jquery',function() {
@@ -30,7 +30,7 @@ gulp.task('css',function() {
 
 gulp.task('compress-js', ['jquery'], function() {
     gulp.src('./src/js/**')
-        .pipe(gzip())
+        //.pipe(gzip())
         .pipe(gulp.dest('./js'));
 });
 
