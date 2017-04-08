@@ -320,7 +320,7 @@ article
 {
     line-height: 1.5em;
 
-    padding: 0 5em 2em 30px;
+    padding: 30px 5em 2em 30px;
 }
 
 footer
@@ -333,9 +333,27 @@ footer
     border-top: 1px solid #e0e0e0;
 }
 
-.footer-item
+.footer-links
 {
-    margin-right: 2em;
+    font-size: 14px;
+
+    margin: 0;
+    padding: 0;
+
+    &__item
+    {
+        float: right;
+
+        margin-right: 1em;
+        padding-bottom: 0.5em;
+
+        list-style-type: none;
+    }
+
+    &__item_left
+    {
+        float: left;
+    }
 }
 
 div.pagebottom

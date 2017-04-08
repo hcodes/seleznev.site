@@ -5,8 +5,6 @@
    </FilesMatch>
 </IfModule>
 
-CharsetDisable On
-
 RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -15,9 +13,7 @@ RewriteRule ^(.*)?(.*) index.php?url=$1&$2&%{QUERY_STRING}
 ErrorDocument 403 /403.html
 ErrorDocument 500 /500.html
 
-
-AddEncoding gzip .gz
-
-RewriteCond %{HTTP:Accept-encoding} gzip
-RewriteCond %{REQUEST_FILENAME}.gz -f
-RewriteRule ^(.*)$ $1.gz [QSA,L]
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
