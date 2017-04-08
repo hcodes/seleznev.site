@@ -6,7 +6,7 @@ $(document).ready(function() {
     });
 });
 
-$(window).load(function() {
+$(window).on('load', function() {
     $('#container').hover(function() {
         $('#img1').stop().animate({opacity: 0}, 'slow');
     }, function() {

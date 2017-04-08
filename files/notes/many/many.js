@@ -1,22 +1,21 @@
-$(window).load(function() {
-    
+$(window).on('load', function() {
     var width = 600;
     var height = 800;
     var timer = 2000;
-    
-    
+
+
     var side1 = true;
     var side2 = true;
     var side3 = true;
     var side4 = true;
 
     $('input:button').each(function () {this.disabled = false;});
-    
+
     var text = '';
     for (var i = 0; i < width; i++)    text += '<div></div>';
-    
+
     $('#many').html(text);
-    
+
     $('#many div').each(function(i) {
         this.style.backgroundPosition = '-' + i + 'px 0px';
         this.style.left = i + 'px';
@@ -35,7 +34,7 @@ $(window).load(function() {
                 $(this).animate({left: i + 'px', top: 0, height: height + 'px'}, timer + getRandom(timer / 2));
             });
         }
-        
+
         side1 = !side1;
     });
 
@@ -52,7 +51,7 @@ $(window).load(function() {
                 $(this).animate({left: i + 'px', top: 0, height: height + 'px'}, timer + getRandom(timer / 2));
             });
         }
-        
+
         side2 = !side2;
     });
 
@@ -70,7 +69,7 @@ $(window).load(function() {
                 $(this).animate({top: 0}, timer + getRandom(timer / 2));
             });
         }
-        
+
         side3 = !side3;
     });
 
@@ -80,7 +79,7 @@ $(window).load(function() {
                 if (i < width) {
                     if (i < width / 2) {
                         $(this).animate({opacity: i / (width / 2)}, timer);
-                    } 
+                    }
                     else {
                         $(this).animate({opacity: (width - i) / (width / 2)}, timer);
                     }
@@ -93,12 +92,12 @@ $(window).load(function() {
                 $(this).animate({opacity: 1}, timer);
             });
         }
-        
+
         side4 = !side4;
     });
-    
+
     $('#button5').click(function() {
-        
+
         if (hTimer) {
             clearTimeout(hTimer);
             hTimer = null;
@@ -111,7 +110,7 @@ $(window).load(function() {
             sinMove();
             $('input:button').not('#button5').each(function () {this.disabled = true;});
         }
-    });    
+    });
 
 });
 
@@ -121,25 +120,23 @@ var hTimer = null;
 
 function sinMove() {
     step += 10;
-    
+
     $('#many div').each(function(i) {
         this.style.top = (Math.cos(2 * Math.PI * (i + step) / 1000) * 100) + 'px';
     });
 
-    hTimer = setTimeout(sinMove, 50);    
+    hTimer = setTimeout(sinMove, 50);
 }
 
 function cageMove() {
     step += 10;
-    
+
     $('#many div').each(function(i) {
         this.style.top = (Math.cos(2 * Math.PI * (i + step) / 1000) * 100) + 'px';
     });
 
-    setTimeout(sinMove, 50);    
+    setTimeout(sinMove, 50);
 }
-
-
 
 function getRandom(n) {
     return Math.floor(Math.random()*n);

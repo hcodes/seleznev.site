@@ -102,9 +102,6 @@
         <page name="check_xml">
             <title>Проверка разметки XML на JavaScript</title>
         </page>
-        <page name="detect_flashblock">
-            <title>Определение блокировки флеша Flashblock'ом</title>
-        </page>
         <page name="snow">
             <location>https://github.com/hcodes/snowflakes</location>
         </page>

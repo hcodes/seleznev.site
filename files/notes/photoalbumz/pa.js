@@ -12,7 +12,7 @@ $(document).ready(function() {
     $(document).mousemove(fmoveimg).mouseup(fmouseup);
 });
 
-$(window).load(function() {
+$(window).on('load', function() {
     var i = 0;
     var width = 0;
     var height = 0;

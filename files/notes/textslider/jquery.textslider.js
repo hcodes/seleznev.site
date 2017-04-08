@@ -17,9 +17,9 @@
 
     function install(els, obj) {
         if (!els.length) {
-            return;        
+            return;
         }
-        
+
         els.each(function() {
             var min = null,
                 max = null,
@@ -27,10 +27,10 @@
                 filterForValue = null,
                 filterForCSS = null,
                 value = $(this).val();
-            
+
             $(this).wrap('<span class="textslider"></span>');
             $('<span style="-moz-user-select:none;-khtml-user-select:none;"></span>').attr('unselectable', 'on').insertBefore(this).attr('title', $(this).attr('title'));
-            
+
             if (typeof obj == 'object') {
                 if (typeof obj.min != 'undefined') {
                     min = obj.min;
@@ -44,7 +44,7 @@
                 if (obj.filterForValue) {
                     filterForValue = obj.filterForValue;
                 }
-                    
+
                 if (obj.filterForCSS) {
                     filterForCSS = obj.filterForCSS;
                 }
@@ -66,19 +66,19 @@
                     }
                 }
             }
-            
+
             if (!filterForValue) {
                 filterForValue = function(value, data) {
                     return value;
                 }
             }
-            
+
             if (!filterForCSS) {
                 filterForCSS = function(value, data) {
                         return {};
                 }
             }
-            
+
             if (min !== null && max !== null && max < min) {
                 min = max = null;
             }
@@ -91,7 +91,7 @@
                     step = 1;
                 }
             }
-            
+
             if (min !== null && value < min) {
                 value = min;
             }
@@ -103,7 +103,7 @@
                 if (isMouseMove && $.browser.msie) {
                     return;
                 }
-                
+
                 $('input', $(this).hide().parent()).css(cssReset).focus();
             }).mousedown(function(e) {
                 isMouseMove = false;
@@ -115,24 +115,24 @@
                 }
                 currentSpan    = this;
                 oldValue = parseFloat($('input', $(currentSpan).parent()).val());
-                
-                $(document).bind('mousemove.textslider', mousemove).bind('mouseup.textslider', mouseup);
-                
+
+                $(document).on('mousemove.textslider', mousemove).on('mouseup.textslider', mouseup);
+
                 return false;
             });
-            
+
             $(this).change(function() {
                 var span = $(this).parent().find('> span');
                 var data = {span: span, min: min, max: max, step: step};
                 span.html(filterForValue(this.value, data));
                 span.css(filterForCSS(this.value, data));
             });
-            
+
             $(this).val(value).change();
             $(this).focus(function() {
                 $(this).css(cssReset).parent().find('> span').hide();
             });
-            
+
             function closeInput(e) {
                 if ((e.type == 'keydown' && e.keyCode == 13) || e.type == 'blur') {
                     var span = $('> span', $(this).css(cssOutside).parent()),
@@ -145,7 +145,7 @@
                     if (max !== null && value > max) {
                         value = max;
                     }
-                    
+
                     span.show();
                     $(this).val(value).change();
                 }
@@ -168,17 +168,17 @@
                 if (max !== null && value > max) {
                     value = max;
                 }
-                
+
                 input.val(value).change();
-                        
+
                 return false;
             }
        }
-      
+
        function mouseup(e) {
-             mousedown = false;                
-            $(document).unbind('mousemove.textslider', mousemove).unbind('mouseup.textslider', mouseup);
-             
+             mousedown = false;
+            $(document).un('mousemove.textslider', mousemove).unbind('mouseup.textslider', mouseup);
+
             return false;
        }
     }

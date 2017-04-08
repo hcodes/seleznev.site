@@ -69,7 +69,7 @@ $(document).ready(function() {
 });
 
 var jsx = '';
-$(window).load(function() {
+$(window).on('load', function() {
     var text = $('#font-family').val();
     $('#fonts span').each(function() {
         if ($(this).text() == text)    $(this).removeClass('ajax').addClass('select');

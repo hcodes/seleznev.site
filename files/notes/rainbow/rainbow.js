@@ -1,4 +1,4 @@
-$(window).load(function() {
+$(window).on('load', function() {
     var pad = 0;
     var hdiv = 5;
     

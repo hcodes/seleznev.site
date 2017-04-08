@@ -9,21 +9,21 @@ function step1() {
     function showInput() {
         var text = 'Проснись,                            следуй за желтым кроликом.                   ',
             res = '';
-            
+
         for (var i = 0; i < text.length && i < pos; i++) {
                 res += text.charAt(i);
         }
         res += (pos >= text.length) ? '' : ((flag) ? '' : '<span class="space">|</span>');
-        
+
         $('#wake-up').html(res);
         flag = !flag;
         pos++;
-        
+
         if (pos <= text.length) setTimeout(showInput, 100);
-    }    
-    
+    }
+
     showInput();
-    
+
     setTimeout(function() {
         $('#wake-up').hide();
         $('#yandex, #letters').show('normal');
@@ -41,19 +41,19 @@ function showMatrix() {
         left = 0,
         w = $('body').width(),
         h = $('body').height();
-        
+
     while(left < w) {
         t = '';
         var fs = 10 + getRandom(30);
         for (var k = 0; k < h / fs; k++) {
             t += '<div>' + String.fromCharCode(32 + getRandom(100)) + '</div>';
-        }        
-        
+        }
+
         $('#buf-letter').text('M').css('font-size',  fs + 'px').css('width', '1em');
         left += $('#buf-letter').width() * 1.7;
         text.push('<div class="m' + getRandom(6) + '" style="top:-'+(fs * 30 + getRandom(fs * 30))+'px; font-size:' + fs + 'px; left:' + left + 'px; z-index:' + fs + ';">' + t + '</div>');
 
-        
+
         speeds.push((31 - fs) * 3);
         speedsY.push((31 - fs * 2) * 3);
         if (!getRandom(4)) {
@@ -63,12 +63,12 @@ function showMatrix() {
             white.push(-1);
         }
     }
-    
+
     $('#letters').html(text.join(''));
 
     var divs = $('#letters > div'),
         cache = [];
-    
+
     setInterval(function() {
         divs.each(function(i) {
             if (this.offsetTop > h) {
@@ -77,7 +77,7 @@ function showMatrix() {
             else {
                 this.style.top = (this.offsetTop + (parseInt($(this).css('font-size'))) / 4) + 'px';
             }
-            
+
             if (white[i] != -1) {
                 var d;
                 if (cache[i]) {
@@ -86,7 +86,7 @@ function showMatrix() {
                 else {
                     cache[i] = d = $('div', this);
                 }
-                
+
                 d.eq(white[i] - 4).attr('class', '');
                 white[i] += 1;
                 d.eq(white[i] - 3).attr('class', 'l3');
@@ -96,20 +96,20 @@ function showMatrix() {
                 d.eq(white[i] + 1).attr('class', 'l1');
                 d.eq(white[i] + 2).attr('class', 'l2');
                 d.eq(white[i] + 3).attr('class', 'l3');
-                
+
                 if (white[i] >= 100) {
                     white[i] = 0;
                 }
             }
         });
     }, 30);
-    
-    
+
+
     setInterval(function() {
         divs.each(function(i) {
             $(this).animate({left: getRandom(sw) + 'px'}, 3000);
         });
-    }, 30000);            
+    }, 30000);
 }
 
 function step2() {
@@ -126,17 +126,17 @@ function step2() {
 
     function colorize() {
         $('#yandex span').css('color', 'rgb(255,' + (255 - c) + ',' + (255 - c) + ')');
-        
+
         if (c != 255) {
             setTimeout(colorize, 20);
         }
-        
+
         c += 2;
-    }            
+    }
 
     colorize();
 }
 
-$(window).load(function() {
+$(window).on('load', function() {
     step1();
 });
